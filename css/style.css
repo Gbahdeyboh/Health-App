@@ -1,5 +1,63 @@
 :root{
-	--pageTextColor: #6d6dba;
-	--pageGreyColor: #ebf1f1;
+	--pageBlue: #09A5DB;
+	--pageBlack: #011B33;
+	--pageGrey: #B0B0B0;
 }
 
+#pageBody{
+	width: 100%;
+	height: 100vh;
+	margin: 0px!important;
+}
+
+#sectionMenu{
+	float: left;
+	width: 19%;
+	padding: 2em;
+}
+
+#sectionBody{
+	float: right;
+	width: 81%;
+}
+
+#appName{
+	font-family: 'SF Pro Display Bold';
+	font-style: normal;
+	font-weight: bold;
+	font-size: 1.4em;
+	line-height: 25px;
+	letter-spacing: 0.01em;
+	color: #011B33;
+}
+
+#mainMenuText{
+	margin-top: 4em;
+}
+
+.sideMenuText{
+	color: #B0B0B0;
+	padding: .7em;
+	cursor: pointer;
+}
+
+.sideMenuText > span{
+	padding-left: .8em;
+	font-family: 'Open Sans';
+	font-size: 1em;
+	font-family: 'SF Pro Display Medium';
+}
+
+.sideMenuText.active > span {
+	color: var(--pageBlue);
+}
+
+.active{
+	animation: glow .5s linear;
+}
+
+@keyframes glow{
+	from{
+		color: var(--pageGrey);
+	}
+}
