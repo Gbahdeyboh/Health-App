@@ -126,6 +126,7 @@
 #statsSection{
 	width: 100%;
 	height: 240px;
+	animation: glow 1s linear;
 }
 
 #statsBody{
@@ -160,6 +161,6 @@
 
 @keyframes glow{
 	from{
-		color: var(--pageGrey);
+		opacity: 0;
 	}
 }
