@@ -112,10 +112,10 @@
 }
 
 .body::-webkit-scrollbar-thumb {
-	background-color: grey;
+	background-color: var(--pageTextGrey);
 	width: 2px;
 	height: 2px;
-	border-radius: 5px;
+	border-radius: 20px;
 	cursor: pointer;
 }
 
@@ -129,9 +129,18 @@
 	animation: glow 1s linear;
 }
 
+#pingDetailsSection{
+	width: 100%;
+	height: 750px;
+	animation: glow 1s linear 1s;
+}
+
 #statsBody{
-	width: 92%;
+	width: calc(100% - 4em);
+	margin-top: 2em;
+	margin-bottom: 2em;
 	height: 165px;
+	border-radius: 10px;
 }
 #statsBodyName{
 	height: 45%;
@@ -157,6 +166,121 @@
 	color: var(--pageTextGrey);
 }
 
+#allPingsSection{
+	width: 40%;
+	float: left;
+}
+
+#infoSection{
+	width: 60%;
+	float: right;
+}
+
+#pingDetailsBody{
+	width: calc(100% - 4em);
+	height: calc(100% - 4em);
+	margin: 2em;
+	border-radius: 5px;
+}
+
+#pingDetailsHeader{
+	height: 155px;
+	width: 100%;
+}
+
+#pingDetailsHeaderBody{
+	height: 80px;
+	width: 100%;
+	margin-bottom: 1.5em;
+}
+
+#pingDetailsHeaderBody > div{
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 400;
+	padding-top: 25px;
+	padding-left: 20px;
+	font-size: 1.1em;
+}
+
+#pingDetailsHeaderRuleBody{
+	height: 5px;
+	margin-top: 65px;
+}
+
+#pingDetailsHeaderRule{
+	height: 3px;
+	width: 80%;
+	border-bottom: 1px solid #EFEFEF;
+}
+
+#pingDetails{
+	min-height: 300px;
+}
+
+#pingDetailFilter{
+	height: 40px;
+	width: 90px;
+	border-radius: 10px;
+	border: 1px solid var(--pageGrey);
+	margin-left: 30px;
+	cursor: pointer;
+}
+
+#pingDetailFilterArrow{
+	padding-left: 1em;
+	padding-top: 2px;
+}
+
+#pingDetail{
+	width: 100%;
+	height: 95px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+
+#pingDetail:hover{
+	background: #F5F6FA;
+	cursor: pointer;
+}
+
+#pingDetailImageBody{
+	padding-top: .6em!important;
+	padding-left: 2em;
+}
+
+#pingDetailImageBody > img{
+	object-fit: cover;
+	border-radius: 100px;
+	width: 55.5px;
+	height: 55px;
+}
+
+#pingDetailTextBodyOne{
+	height: 30%;
+}
+
+.pingDetailTextBodyTwo{
+	height: 70%;
+	color: #828282;
+	font-family: 'Open Sans', sans-serif;
+	/*white-space: nowrap; 
+	overflow: hidden;
+	word-wrap: break-word;
+	text-overflow: ellipsis;*/
+	padding-left: 12px;
+}
+
+.pingDetailName{
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-size: 1.1em;
+	font-weight: 500;
+}
+
+.pingDetailTime{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	color: #8798AD;
+}
 
 
 @keyframes glow{
