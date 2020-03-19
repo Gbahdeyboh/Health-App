@@ -132,7 +132,7 @@
 #pingDetailsSection{
 	width: 100%;
 	height: 750px;
-	animation: glow 1s linear 1s;
+	animation: glow 1s linear .5s;
 }
 
 #statsBody{

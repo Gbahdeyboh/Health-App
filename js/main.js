@@ -25,7 +25,7 @@ function selectPings(){
 	// display the ping section and hide the student section
 	let studentsSection = document.querySelector('#studentsSection');
 	let pingsSection = document.querySelector('#pingsSection');
-	pingsSection.style.display = "flex";
+	pingsSection.style.display = "block";
 	studentsSection.style.display = "none";
 }
 
@@ -52,5 +52,5 @@ function selectStudent(){
 	let studentsSection = document.querySelector('#studentsSection');
 	let pingsSection = document.querySelector('#pingsSection');
 	pingsSection.style.display = "none";
-	studentsSection.style.display = "flex";
+	studentsSection.style.display = "block";
 }
