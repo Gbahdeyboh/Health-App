@@ -282,6 +282,114 @@
 	color: #8798AD;
 }
 
+#infoSectionLatestPingContainer{
+	width: 100%;
+	height: 250px;
+}
+
+#infoSectionLatestPingBody{
+	height: 200px;
+	width: calc(100% - 4em);
+	margin: 2em;
+	border-radius: 10px;
+}
+
+#latestPingImage{
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+	object-fit: cover;
+	margin-top: 20px;
+}
+
+#latestPingSectionOne{
+	height: 45%;
+}
+
+#latestPingSectionOne > div {
+	padding: 0px!important;
+}
+
+#latestPingSectionTwo{
+	height: 55%;
+	position: relative;
+}
+
+.latestPinger{
+	height: 33.3%;
+}
+
+#latestPingerName{
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 500;
+	line-height: 19px;
+	font-size: 1.1em;
+	padding: .5em;
+	color: var(--pageTextBlack);
+}
+
+#latestPingerClinicNo{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: var(--pageTextBlack);
+	line-height: 15px;
+	padding: .5em;
+}
+
+#latestPingerTime{
+	font-family: 'Open Sans';
+	font-size: 14px;
+	line-height: 15px;
+	padding-left: .5em;
+	color: #8798AD;
+}
+
+#videoCallBtn{
+	height: 40px;
+	width: 140px;
+	background: var(--pageBlue);
+	border-radius: 5px;
+	color: white;
+	font-size: 14px;
+}
+
+#latestPingMessage{
+	height: 70%;
+	width: 95%;
+	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 21px;
+	color: #828282;
+	letter-spacing: 0.01em;
+	overflow-y: scroll;
+}
+
+#latestPingMessage::-webkit-scrollbar {
+  width: 5px;
+  height: .1px;
+}
+#latestPingMessage::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#latestPingMessage::-webkit-scrollbar-thumb {
+	background-color: var(--pageTextGrey);
+	width: 2px;
+	height: 2px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+#latestPingMessageOverlay{
+	height: 40px;
+	width: 90%;
+	margin-right: 10px!important;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+	margin-bottom: 1.5em;
+	position: absolute;
+	bottom: -1.8em!important;
+}
+
 
 @keyframes glow{
 	from{
