@@ -140,9 +140,11 @@
 }
 
 #statsBody{
-	width: calc(100% - 4em);
-	margin-top: 2em;
-	margin-bottom: 2em;
+	width: calc(100% - 80px);
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-right:40px;
+	margin-left: 40px;
 	height: 165px;
 	border-radius: 10px;
 }
@@ -155,8 +157,9 @@
 }
 
 .pingsStatsCount{
-	font-size: 30px;
-	font-family: 'SF Pro Display Bold';
+	font-size: 25px;
+	font-family: 'SF Pro Display Medium';
+	font-weight: 300;
 	color: var(---pageTextBlack);
 	padding-top: .4em;
 }
@@ -249,7 +252,7 @@
 
 #pingDetailImageBody{
 	padding-top: .6em!important;
-	padding-left: 2em;
+	/*padding-left: calc(100%-8px)!important;*/
 }
 
 #pingDetailImageBody > img{
@@ -257,6 +260,7 @@
 	border-radius: 100px;
 	width: 55.5px;
 	height: 55px;
+	margin-left: 2em;
 }
 
 #pingDetailTextBodyOne{
@@ -365,6 +369,7 @@
 	line-height: 21px;
 	color: #828282;
 	letter-spacing: 0.01em;
+	padding-bottom: 1em;
 	overflow-y: scroll;
 }
 
@@ -387,7 +392,7 @@
 #latestPingMessageOverlay{
 	height: 40px;
 	width: 92%;
-	margin-right: 10px!important;
+	margin-right: -10px!important;
 	background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
 	margin-bottom: 1.5em;
 	position: absolute;
