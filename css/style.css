@@ -123,6 +123,10 @@
 	display: none;
 }
 
+#pingsSection{
+	/*display: none;*/
+}
+
 #statsSection{
 	width: 100%;
 	height: 240px;
@@ -337,7 +341,7 @@
 }
 
 #latestPingerTime{
-	font-family: 'Open Sans';
+	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	line-height: 15px;
 	padding-left: .5em;
@@ -357,7 +361,7 @@
 	height: 70%;
 	width: 95%;
 	font-size: 15px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif, sans-serif;
 	line-height: 21px;
 	color: #828282;
 	letter-spacing: 0.01em;
@@ -409,7 +413,7 @@
 
 #recentlyAddedToText{
 	font-size: 1.1em;
-	font-family: 'SF Pro Display Medium';
+	font-family: 'SF Pro Display Medium', sans-serif;
 	font-weight: 500;
 	line-height: 19px;
 	color: var(--pageTextBlack);
@@ -429,7 +433,6 @@
 	transition: border .5s linear;
 	margin-top: 2em;
 	float: right;
-
 }
 
 #recentlyAddedToSearch:focus{
@@ -463,7 +466,7 @@
 
 #recentlyAddedTableBody > div{
 	font-size: 13px;
-	font-family: 'SF Pro Display Medium';
+	font-family: 'SF Pro Display Medium', sans-serif;
 	line-height: 16px;
 	color: #333333;	
 }
@@ -495,7 +498,105 @@
 	display: none;
 }
 
+#studentsAllStudentsSection{
+	width: calc(90% - 2.5em);
+	margin-left: 2em;
+	margin-right: .5em;
+	min-height: calc(100% - 4em);
+	margin-top: 2em;
+	margin-bottom: 2em;
+	border-radius: 10px;
+}
 
+#studentsAllSectionHeader{
+	width: 100%;
+	height: 70px;
+}
+
+#studentsSectionHeadetText{
+	font-size: 1.1em;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 500;
+	padding: 1.5em;
+}
+
+#studentsSectionFilter{
+	height: 40px;
+	width: 90px;
+	border-radius: 10px;
+	border: 1px solid var(--pageGrey);
+	margin-left: 30px;
+	cursor: pointer;
+}
+
+#studentSectionSearchBody{
+	width: 100%;
+	height: 40px;
+}
+
+#studentSectionSearch{
+	height: 33px;
+	width: 90%;
+	border-radius: 10px;
+	border: 1px solid lightgrey;
+	opacity: 1;
+	background: url('./icons/search.svg') no-repeat;
+	background-position: 98% 40%;
+	padding: 1em;
+	transition: border .5s linear;
+}
+
+#studentSectionSearch:focus{
+	outline: none;
+	border: 1px solid var(--pageBlue);
+}
+
+#studentSectionsBody{
+	width: 100%;
+	min-height: 300px;
+}
+
+
+.studentSectionDiv{
+	width: 100%;
+	height: 60px;
+	margin-top: 1em;
+}
+
+.studentsSectionImages{
+	height: 40px;
+	width: 40px;
+	border-radius: 100px;
+	object-fit: 'cover';
+}
+
+.studentsSectionName{
+	font-size: 1.1em;
+	font-weight: 500;
+	font-family: 'SF Pro Display Medium', sans-serif;
+}
+
+.studentsSectionNumber{
+	font-size: 15px;
+	font-weight: normal;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	color: #828282;
+}
+
+.studentsSectionClinicNo{
+	font-weight: 'SF Pro Display Medium', sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+	color: var(--pageTextBlack);
+}
+
+.studentsSectionLevel{
+	font-size: 14px;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: normal;
+	color: var(--pageTextGrey);
+	text-align: right;
+}
 
 
 @keyframes glow{
