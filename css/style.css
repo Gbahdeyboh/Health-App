@@ -506,6 +506,7 @@
 	margin-top: 2em;
 	margin-bottom: 2em;
 	border-radius: 10px;
+	animation: glow .5s linear;
 }
 
 #studentsAllSectionHeader{
@@ -601,6 +602,7 @@
 #studentDetailsSection{
 	width: 100%;
 	height: 180px;
+	animation: glow .5s linear;
 }
 
 #studentDetailProfileBody{
@@ -649,6 +651,84 @@
 	color: var(--pageTextBlack);
 	padding-top: 1.5em;
 }
+
+#studentDetailsPingHistory{
+	width: 100%;
+	min-height: 360px;
+	border-radius: 5px;
+	animation: glow .5s linear;
+}
+
+#studentDetailsPingHistoryHeader{
+	height: 70px;
+}
+
+#pingHistoryText{
+	padding-top: 2em;
+	padding-left: 1.3em;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 500;
+	color: var(--pageTextBlack);
+	font-size: 1.1em;
+}
+
+#pingHistorySearch{
+	height: 33px;
+	width: 235px;
+	border-radius: 10px;
+	border: 1px solid lightgrey;
+	opacity: 1;
+	background: url('./icons/search.svg') no-repeat;
+	background-position: 98% 40%;
+	padding: 1em;
+	transition: border .5s linear;
+	float: right;
+}
+
+#pingHistoryTableColumns{
+	height: 50px;
+	background: #F6F6FB;
+}
+
+.pingHistoryColumn{
+	font-size: 14px;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 400;
+	color: var(--pageTextBlack);
+}
+
+#pingHistoryTableRows{
+	height: 50px;
+}
+
+.historyDate{
+	font-size: 12px!important;
+}
+
+.historyResponseStatus{
+	width: 75px;
+	height: 30px;
+	border-radius: 30px;
+	border: 1px;
+	font-size: 13px;
+	font-weight: 400;
+	font-family: 'SF Pro Display Medium', sans-serif;
+}
+
+.historyResponseStatus.replied{
+	border: 0.8px solid #219653;
+	background: #EEFBF3;
+	color: #219653;
+}
+
+.historyResponseStatus.ignored{
+	border: 0.8px solid #EB5757;
+	background: #FDEFEF;
+	color: #EB5757;
+}
+
+
+
 
 
 
