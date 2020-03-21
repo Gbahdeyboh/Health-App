@@ -120,11 +120,11 @@
 }
 
 #studentsSection{
-	/*display: none;*/
+	display: none;
 }
 
 #pingsSection{
-	display: none;
+	/*display: none;*/
 }
 
 #statsSection{
