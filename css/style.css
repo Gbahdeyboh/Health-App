@@ -484,6 +484,18 @@
 }
 
 
+#disableMobile{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	background: var(--pageGrey);
+	text-align: center;
+	display: none;
+}
+
+
 
 
 @keyframes glow{
