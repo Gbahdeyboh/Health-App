@@ -382,13 +382,108 @@
 
 #latestPingMessageOverlay{
 	height: 40px;
-	width: 90%;
+	width: 92%;
 	margin-right: 10px!important;
 	background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
 	margin-bottom: 1.5em;
 	position: absolute;
 	bottom: -1.8em!important;
 }
+
+#infoSectionRecntlyContainer{
+	width: 100%;
+	height: 470px;
+}
+
+#infoSectionRecntlyBody{
+	width: calc(100% - 4em);
+	height: calc(470px - 4em);
+	margin-top: 0px!important;
+	margin: 2em;
+}
+
+#infoSectionRecntlyHeader{
+	height: 80px;
+	width: 90%;
+}
+
+#recentlyAddedToText{
+	font-size: 1.1em;
+	font-family: 'SF Pro Display Medium';
+	font-weight: 500;
+	line-height: 19px;
+	color: var(--pageTextBlack);
+	letter-spacing: 0.045em;
+	padding-top: 2.5em;
+}
+
+#recentlyAddedToSearch{
+	height: 33px;
+	width: 235px;
+	border-radius: 10px;
+	border: 1px solid lightgrey;
+	opacity: 1;
+	background: url('./icons/search.svg') no-repeat;
+	background-position: 98% 40%;
+	padding: 1em;
+	transition: border .5s linear;
+	margin-top: 2em;
+	float: right;
+
+}
+
+#recentlyAddedToSearch:focus{
+	outline: none;
+	border: 1px solid var(--pageBlue);
+}
+
+#recentlyAddedTable{
+	width: 100%;
+	height: 350px;
+}
+
+#recentlyAddedTableHeader{
+	height: 40px;
+	width: 90%;
+	background: #F6F6FB;
+}
+
+#recentlyAddedTableHeader > div {
+	font-size: 13px;
+	font-family: 'SF Pro Display Medium';
+	line-height: 16px;
+	color: #333333;	
+}
+
+#recentlyAddedTableBody{
+	height: 40px;
+	width: 90%;
+	background: white;
+}
+
+#recentlyAddedTableBody > div{
+	font-size: 13px;
+	font-family: 'SF Pro Display Medium';
+	line-height: 16px;
+	color: #333333;	
+}
+
+.recentlyAddedUserImage{
+	width: 40px;
+	height: 40px;
+	object-fit: 'cover';
+	border-radius: 100px;
+}
+
+.recentlyAddedUserName{
+	padding-left: 1em;
+}
+
+.recentAddedBody{
+	margin-top: 1em;
+}
+
+
 
 
 @keyframes glow{
