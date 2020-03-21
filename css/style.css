@@ -120,11 +120,11 @@
 }
 
 #studentsSection{
-	display: none;
+	/*display: none;*/
 }
 
 #pingsSection{
-	/*display: none;*/
+	display: none;
 }
 
 #statsSection{
@@ -597,6 +597,59 @@
 	color: var(--pageTextGrey);
 	text-align: right;
 }
+
+#studentDetailsSection{
+	width: 100%;
+	height: 180px;
+}
+
+#studentDetailProfileBody{
+	height: 90%;
+	width: calc(100%-2em);
+	margin-right: 1em;
+	margin-top: 2em;
+	border-radius: 5px;
+}
+
+#studentDetailProfilePicture{
+	height: 120px;
+	width: 120px;
+	object-fit: cover;
+}
+
+#studentDetailsName{
+	height: 20%;
+	margin-top: 15%;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: 400;
+	font-size: 21px;
+	color: var(--pageTextBlack);
+}
+
+#studentDetailsClinicNo{
+	height: 20%;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	color: var(--pageTextGrey);
+}
+
+#studentDetailsLevel{
+	height: 20%;
+	margin-bottom: 15%;
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-weight: normal;
+	color:  #000000;
+}
+
+#studentDetailsNumber{
+	font-family: 'SF Pro Display Medium', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: var(--pageTextBlack);
+	padding-top: 1.5em;
+}
+
 
 
 @keyframes glow{
