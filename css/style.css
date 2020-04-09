@@ -183,6 +183,28 @@
 	float: right;
 }
 
+#pingInfoSection{
+	height: 450px;
+	overflow-y: scroll;
+}
+
+#pingInfoSection::-webkit-scrollbar {
+  width: 3px;
+  height: .1px;
+}
+
+#pingInfoSection::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#pingInfoSection::-webkit-scrollbar-thumb {
+	background-color: var(--pageTextGrey);
+	width: 2px;
+	height: 2px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
 #pingDetailsBody{
 	width: calc(100% - 4em);
 	height: calc(100% - 4em);
@@ -307,7 +329,7 @@
 	height: 60px;
 	border-radius: 100px;
 	object-fit: cover;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #latestPingSectionOne{

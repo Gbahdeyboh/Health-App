@@ -6,6 +6,44 @@ document.addEventListener('DOMContentLoaded', () => {
 		disableMobile.style.display = 'flex';
 	}
 
+	let baseURL = 'http://curefb.herokuapp.com/api/v1';
+	// Load the student data from the server and populate the DOM with it
+	let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJoZGljNzMwMmljbXMiLCJpYXQiOjE1ODYzMDc4NzgsImV4cCI6MTU4NjQ4MDY3OH0.45l3MT-ce8ZBoEfqp0uPHlLQ9icy3YbmL1vkH2-IDu0";
+
+	fetch(`${baseURL}/healthcentre/ping`, {
+		headers: {
+			'Authorization': `Bearer ${token}`
+		}
+	})
+	.then(res => res.json())
+	.then(data => {
+		console.log("The loaded data is ", data);
+		let pingInfoSection = document.querySelector('#pingInfoSection');
+		if(data.success){
+			data.data.forEach(pingInfo => {
+				pingInfoSection.innerHTML += `
+					<div class="" id="pingDetail" data-is=${pingInfo.id}>
+						<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
+							<img src="./images/profile2.jpg">
+						</div>
+						<div class="col m9 l9 fullHeight">
+							<div class="" id="pingDetailTextBodyOne">
+								<div class="fullHeight col m8 l8 pingDetailName">Wendy Flores</div>
+								<div class="fullHeight col m4 l4 pingDetailTime">10:52AM</div>
+							</div>
+							<div class="pingDetailTextBodyTwo">
+								${pingInfo.message}
+							</div>
+						</div>
+					</div>
+				`
+			});
+		}
+	})
+	.catch(err => {
+		console.log("The err is ", err);
+	})
+
 })
 
 window.mobilecheck = function() {
