@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Load in the data of students
-	function fetchFewStudents(){
+	(function fetchFewStudents(){
 		let someStudentsLoaderBody = document.querySelector('#someStudentsLoaderBody');
 		fetch("https://curefb.herokuapp.com/api/v1/healthcentre/student?page_size=5", {
 			headers: {
@@ -126,15 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch(err => {
 			console.log("Could not fetch few students data => ", err);
 		})
-	}
-	fetchFewStudents();
+	})();
+	// fetchFewStudents();
 
 
 
 
 	// fetch the statistics of students
 
-	function fecthStats(){
+	(function fecthStats(){
 		fetch("https://curefb.herokuapp.com/api/v1/healthcentre/statistics", {
 			headers: {
 				'Authorization': `Bearer ${token}`
@@ -155,8 +155,64 @@ document.addEventListener('DOMContentLoaded', () => {
 		.catch(err => {
 			console.log("Could not fetch statistics => ", err);
 		});
+	})();
+	// fecthStats();
+
+
+
+
+	let studentLoader = document.querySelector('#studentsLoaderBody');
+	function fetchStudents(nextUrl){
+		/**
+		* param {String} nextUrl - The next page dats to be accessed/loaded
+		*/
+		if(nextUrl){
+			fetch(nextUrl, {
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			})
+			.then(res => res.json())
+			.then(data => {
+				console.log("The loaded data is ", data);
+				// Remove the loader
+				studentLoader.style.display = "none";
+				if(data.success){
+					let studentsSections = document.querySelector("#studentsSections");
+					// store the new url
+					let newUrl = data.meta_data.links.next;
+					localStorage.setItem('nextUrl', newUrl); 
+					data.data.forEach(pingInfo => {
+						// Populate the sudent section
+						studentsSections.innerHTML += `
+							<div class="studentSectionDiv">
+								<div class="col m2 l2 fullHeight displayFlex">
+									<img src="./images/profile2.jpg" class="studentsSectionImages">
+								</div>
+								<div class="col m7 l7 fullHeight">
+									<div class="halfHeight studentsSectionName">${pingInfo.last_name} ${pingInfo.first_name}</div>
+									<div class="halfHeight studentsSectionNumber">${pingInfo.mobile_number}</div>
+								</div>
+								<div class="col m3 l3 fullHeight">
+									<div class="halfHeight studentsSectionClinicNo">${pingInfo.clinic_number}</div>
+									<div class="halfHeight studentsSectionLevel">200L</div>
+								</div>
+							</div>
+						`
+					});
+				}
+			})
+			.catch(err => {
+				console.log("Could not fetch students data => ", err);
+				studentLoader.style.display = "none";
+				let observer = document.querySelector('#studentObserver');
+				observer.textContent = "There are no more students available...";
+			})
+		}
 	}
-	fecthStats();
+
+	fetchStudents("https://curefb.herokuapp.com/api/v1/healthcentre/student");
+	observeElement('studentObserver', studentLoader, fetchStudents);
 	
 
 
@@ -174,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-	function observeElement(observe, callback){
+	function observeElement(observe, loader, callback){
 		/**
 		* @param {String} observe - Element to observe
 		* @param {Function} callback - function to be executed after observation is made
@@ -194,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		observer.observe(document.querySelector(`#${observe}`));
 	}
-	observeElement('observer', fetchPings);
+	observeElement('observer', loader, fetchPings);
 	// Load the initial data
     fetchPings("https://"+"curefb.herokuapp.com/api/v1/healthcentre/ping");
     // Socket connection to latest ping
