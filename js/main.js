@@ -198,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Load the initial data
     fetchPings("https://"+"curefb.herokuapp.com/api/v1/healthcentre/ping");
     // Socket connection to latest ping
-    let socket = new WebSocket("wss://healfb.herokuapp.com/ws/pings");
+    let socket = new WebSocket("wss://curefb.herokuapp.com/ws/pings");
     socket.onmessage = function(event){
-    	alert("Pinginggg.....", event.data);
+    	console.log("Pinginggg.....", event.data);
     }
 });
 
