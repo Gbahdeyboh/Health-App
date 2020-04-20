@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Load in the data of students
 	function fetchFewStudents(){
+		let someStudentsLoaderBody = document.querySelector('#someStudentsLoaderBody');
 		fetch("https://curefb.herokuapp.com/api/v1/healthcentre/student?page_size=5", {
 			headers: {
 				'Authorization': `Bearer ${token}`
@@ -102,17 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			let someStudentData = document.querySelector('#someStudentsData');
 			if(data.success){
 				let payload = data.data;
+				// remove the loader 
+				someStudentsLoaderBody.style.display = 'none';
 				console.log("payload=> ", payload);
 				payload.forEach(student => {
 					someStudentData.innerHTML += `
 						<div class="displayFlex recentAddedBody">
 							<div class="" id="recentlyAddedTableBody">
-								<div class="col m4 l4 fullHeight displayFlexLeft">
+								<div class="col m5 l5 fullHeight displayFlexLeft">
 									<img src="${student.image}" class="recentlyAddedUserImage">
 									<span class="recentlyAddedUserName">${student.last_name} ${student.first_name}</span>
 								</div>
-								<div class="col m3 l3 fullHeight displayFlex">${student.clinic_number}</div>
-								<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
+								<div class="col m3 l3 fullHeight displayFlexLeft">${student.clinic_number}</div>
 								<div class="col m3 l3 fullHeight displayFlexLeft">${student.mobile_number}</div>
 								<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 							</div>
@@ -126,6 +128,35 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 	}
 	fetchFewStudents();
+
+
+
+
+	// fetch the statistics of students
+
+	function fecthStats(){
+		fetch("https://curefb.herokuapp.com/api/v1/healthcentre/statistics", {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			let payload = data.data;
+			let pingsCount = document.querySelector("#pingsCount");
+			let repliedPingsCount = document.querySelector("#repliedPingsCount");
+			let videoCallsCount = document.querySelector("#videoCallsCount");
+			let studentsCount = document.querySelector("#studentsCount");
+			pingsCount.textContent = payload.pings;
+			repliedPingsCount.textContent = payload.replied_pings;
+			videoCallsCount.textContent = payload.video_calls;
+			studentsCount.textContent = payload.students;
+		})
+		.catch(err => {
+			console.log("Could not fetch statistics => ", err);
+		});
+	}
+	fecthStats();
 	
 
 
