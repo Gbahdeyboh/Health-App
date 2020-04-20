@@ -308,7 +308,7 @@
 
 .pingDetailTime{
 	font-family: 'Open Sans', sans-serif;
-	font-size: 13px;
+	font-size: 10px;
 	color: #8798AD;
 }
 
@@ -501,8 +501,8 @@
 .recentlyAddedUserImage{
 	width: 40px;
 	height: 40px;
-	object-fit: 'cover';
-	border-radius: 100px;
+	object-fit: cover;
+	border-radius: 1000000px;
 }
 
 .recentlyAddedUserName{

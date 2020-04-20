@@ -151,8 +151,23 @@
 											</div>
 											<!-- More ping details are added here -->
 										</div>
+										<!-- Loader -->
+										<div class="displayFlexColumn" id="loaderBody">
+											<br />
+											<div class="preloader-wrapper active">
+											    <div class="spinner-layer spinner-blue-only">
+												    <div class="circle-clipper left">
+												        <div class="circle"></div>
+												    </div><div class="gap-patch">
+												        <div class="circle"></div>
+												    </div><div class="circle-clipper right">
+												        <div class="circle"></div>
+												    </div>
+											    </div>
+											 </div>
+										</div>
 										<!-- Observer for intersection observer API -->
-										<div id="observer">Welcome</div>
+										<div class="displayFlex" id="observer"></div>
 									</div>
 								</div>
 							</div>
@@ -208,65 +223,69 @@
 												<div class="col m1 l1 fullHeight displayFlexLeft">Sex</div>
 											</div>
 										</div>
-										<div class="displayFlex recentAddedBody">
-											<div class="" id="recentlyAddedTableBody">
-												<div class="col m4 l4 fullHeight displayFlexLeft">
-													<img src="./images/profile2.jpg" class="recentlyAddedUserImage">
-													<span class="recentlyAddedUserName">Savannah Warren</span>
+										<div id="someStudentsData">
+											<!-- Starts here -->
+											<!-- <div class="displayFlex recentAddedBody">
+												<div class="" id="recentlyAddedTableBody">
+													<div class="col m4 l4 fullHeight displayFlexLeft">
+														<img src="https://firebasestorage.googleapis.com/v0/b/health-app-1583346005925.appspot.com/o/users_avatar%2F6vzs6jjor657_sdfsd.jpg?alt=media&token=a8f5fff7-13cf-405f-b622-2cef3580ca63" class="recentlyAddedUserImage">
+														<span class="recentlyAddedUserName">Savannah Warren</span>
+													</div>
+													<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
+													<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 												</div>
-												<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
-												<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 											</div>
-										</div>
-										<div class="displayFlex recentAddedBody">
-											<div class="" id="recentlyAddedTableBody">
-												<div class="col m4 l4 fullHeight displayFlexLeft">
-													<img src="./images/profile1.jpg" class="recentlyAddedUserImage">
-													<span class="recentlyAddedUserName">Jenny Cooper</span>
+											<div class="displayFlex recentAddedBody">
+												<div class="" id="recentlyAddedTableBody">
+													<div class="col m4 l4 fullHeight displayFlexLeft">
+														<img src="https://firebasestorage.googleapis.com/v0/b/health-app-1583346005925.appspot.com/o/users_avatar%2F6vzs6jjor657_sdfsd.jpg?alt=media&token=a8f5fff7-13cf-405f-b622-2cef3580ca63" class="recentlyAddedUserImage">
+														<span class="recentlyAddedUserName">Jenny Cooper</span>
+													</div>
+													<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
+													<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 												</div>
-												<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
-												<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 											</div>
-										</div>
-										<div class="displayFlex recentAddedBody">
-											<div class="" id="recentlyAddedTableBody">
-												<div class="col m4 l4 fullHeight displayFlexLeft">
-													<img src="./images/profile4.jpeg" class="recentlyAddedUserImage">
-													<span class="recentlyAddedUserName">Jerome Robertson</span>
+											<div class="displayFlex recentAddedBody">
+												<div class="" id="recentlyAddedTableBody">
+													<div class="col m4 l4 fullHeight displayFlexLeft">
+														<img src="https://firebasestorage.googleapis.com/v0/b/health-app-1583346005925.appspot.com/o/users_avatar%2F6vzs6jjor657_sdfsd.jpg?alt=media&token=a8f5fff7-13cf-405f-b622-2cef3580ca63" class="recentlyAddedUserImage">
+														<span class="recentlyAddedUserName">Jerome Robertson</span>
+													</div>
+													<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
+													<div class="col m1 l1 fullHeight displayFlex">100L</div>
+													<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 												</div>
-												<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
-												<div class="col m1 l1 fullHeight displayFlex">100L</div>
-												<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 											</div>
-										</div>
-										<div class="displayFlex recentAddedBody">
-											<div class="" id="recentlyAddedTableBody">
-												<div class="col m4 l4 fullHeight displayFlexLeft">
-													<img src="./images/profilePicture.png" class="recentlyAddedUserImage">
-													<span class="recentlyAddedUserName">Dianne Hawkins</span>
+											<div class="displayFlex recentAddedBody">
+												<div class="" id="recentlyAddedTableBody">
+													<div class="col m4 l4 fullHeight displayFlexLeft">
+														<img src="https://firebasestorage.googleapis.com/v0/b/health-app-1583346005925.appspot.com/o/users_avatar%2F6vzs6jjor657_sdfsd.jpg?alt=media&token=a8f5fff7-13cf-405f-b622-2cef3580ca63" class="recentlyAddedUserImage">
+														<span class="recentlyAddedUserName">Dianne Hawkins</span>
+													</div>
+													<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
+													<div class="col m1 l1 fullHeight displayFlex">100L</div>
+													<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 												</div>
-												<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
-												<div class="col m1 l1 fullHeight displayFlex">100L</div>
-												<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 											</div>
-										</div>
-										<div class="displayFlex recentAddedBody">
-											<div class="" id="recentlyAddedTableBody">
-												<div class="col m4 l4 fullHeight displayFlexLeft">
-													<img src="./images/profile2.jpg" class="recentlyAddedUserImage">
-													<span class="recentlyAddedUserName">Judith Steward</span>
+											<div class="displayFlex recentAddedBody">
+												<div class="" id="recentlyAddedTableBody">
+													<div class="col m4 l4 fullHeight displayFlexLeft">
+														<img src="https://firebasestorage.googleapis.com/v0/b/health-app-1583346005925.appspot.com/o/users_avatar%2F6vzs6jjor657_sdfsd.jpg?alt=media&token=a8f5fff7-13cf-405f-b622-2cef3580ca63" class="recentlyAddedUserImage">
+														<span class="recentlyAddedUserName">Judith Steward</span>
+													</div>
+													<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
+													<div class="col m1 l1 fullHeight displayFlex">100L</div>
+													<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
+													<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
 												</div>
-												<div class="col m3 l3 fullHeight displayFlex">ST053108</div>
-												<div class="col m1 l1 fullHeight displayFlex">100L</div>
-												<div class="col m3 l3 fullHeight displayFlexLeft">07063111596</div>
-												<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
-											</div>
+											</div -->>
+											<!-- Ends here -->
 										</div>
 									</div>
 								</div>

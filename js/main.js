@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Load the student data from the server and populate the DOM with it
 	let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJoZGljNzMwMmljbXMiLCJpYXQiOjE1ODczMDQ3NjQsImV4cCI6MTU4NzQ3NzU2NH0.Vp7q74unDdY5LBOw2Vr550YoTNmKmUSIkEdhUPvRRtY";
-
+	let loader = document.querySelector('#loaderBody');
 	function fetchPings(nextUrl){
 		/**
 		* param {String} nextUrl - The next page dats to be accessed/loaded
@@ -22,12 +22,46 @@ document.addEventListener('DOMContentLoaded', () => {
 			.then(res => res.json())
 			.then(data => {
 				console.log("The loaded data is ", data);
+				// Remove the loader
+				loader.style.display = "none";
 				let pingInfoSection = document.querySelector('#allPingDetails');
 				if(data.success){
 					// store the new url
 					let newUrl = data.meta_data.links.next;
 					localStorage.setItem('nextUrl', newUrl); 
 					data.data.forEach(pingInfo => {
+						// Extract the date data returned
+						let dateTime = pingInfo.created_at;
+						dateTime = dateTime.split('.');
+						dateTime.pop();
+						dateTime = dateTime[0].split('T');
+						// date
+						let date = dateTime[0];
+						date = date.split('-');
+						let year = date[0];
+						let month = date[1];
+						let day = date[2];
+						// time
+						let time = dateTime[1];
+						time = time.split(':');
+						let hour = time[0];
+						let minutes = time[1];
+						let seconds = time[2];
+						// format date and time to required format
+						let formattedDate = new Date(year, month, day, hour, minutes, seconds);
+						let formattedTime = formattedDate.toLocaleTimeString();
+						// format date
+						formattedDate = formattedDate.toDateString();
+						formattedDate = formattedDate.split(' ');
+						formattedDate.shift();
+						let formattedDateYear = formattedDate.pop();
+						formattedDate.push(',' + formattedDateYear);
+						formattedDate = formattedDate.join(' ');
+						// format time
+						formattedTime = formattedTime.split(':');
+						let formattedTimeM = formattedTime.pop().split(' ').pop();
+						formattedTime = formattedTime.join(':') + ` ${formattedTimeM}`;
+						// console.log("The formatted zzZ")
 						pingInfoSection.innerHTML += `
 							<div class="" id="pingDetail" data-is=${pingInfo.id}>
 								<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
@@ -36,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								<div class="col m9 l9 fullHeight">
 									<div class="" id="pingDetailTextBodyOne">
 										<div class="fullHeight col m8 l8 pingDetailName">${pingInfo.student.first_name} ${pingInfo.student.last_name}</div>
-										<div class="fullHeight col m4 l4 pingDetailTime">10:52AM</div>
+										<div class="fullHeight col m4 l4 pingDetailTime">${formattedDate} ${formattedTime}</div>
 									</div>
 									<div class="pingDetailTextBodyTwo">
 										${pingInfo.message}
@@ -48,10 +82,67 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			})
 			.catch(err => {
-				console.log("The err is ", err);
+				// console.log("The err is ", err);
+				loader.style.display = "none";
+				let observer = document.querySelector('#observer');
+				observer.textContent = "There are no more pings available...";
 			})
 		}
 	}
+
+	// Load in the data of students
+	function fetchFewStudents(){
+		fetch("https://curefb.herokuapp.com/api/v1/healthcentre/student?page_size=5", {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			let someStudentData = document.querySelector('#someStudentsData');
+			if(data.success){
+				let payload = data.data;
+				console.log("payload=> ", payload);
+				payload.forEach(student => {
+					someStudentData.innerHTML += `
+						<div class="displayFlex recentAddedBody">
+							<div class="" id="recentlyAddedTableBody">
+								<div class="col m4 l4 fullHeight displayFlexLeft">
+									<img src="${student.image}" class="recentlyAddedUserImage">
+									<span class="recentlyAddedUserName">${student.last_name} ${student.first_name}</span>
+								</div>
+								<div class="col m3 l3 fullHeight displayFlex">${student.clinic_number}</div>
+								<div class="col m1 l1 fullHeight displayFlexLeft">100L</div>
+								<div class="col m3 l3 fullHeight displayFlexLeft">${student.mobile_number}</div>
+								<div class="col m1 l1 fullHeight displayFlexLeft">Male</div>
+							</div>
+						</div>
+					`;
+				});
+			}
+		})
+		.catch(err => {
+			console.log("Could not fetch few students data => ", err);
+		})
+	}
+	fetchFewStudents();
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	function observeElement(observe, callback){
 		/**
 		* @param {String} observe - Element to observe
@@ -61,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			entries.forEach(entry => {
 				if(entry.intersectionRatio > 0){
 					console.log("In view.................");
+					loader.style.display = "flex";
 					let nextUrl =localStorage.getItem('nextUrl');
 					if(nextUrl){
 						callback(nextUrl);
@@ -74,6 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	observeElement('observer', fetchPings);
 	// Load the initial data
     fetchPings("https://"+"curefb.herokuapp.com/api/v1/healthcentre/ping");
+    // Socket connection to latest ping
+    let socket = new WebSocket("wss://healfb.herokuapp.com/ws/pings");
+    socket.onmessage = function(event){
+    	alert("Pinginggg.....", event.data);
+    }
 });
 
 window.mobilecheck = function() {
