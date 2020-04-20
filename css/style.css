@@ -773,6 +773,113 @@
 
 
 
+/*Login Page below*/
+
+#loginBodyBackground{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background: #F5FCFF;
+}
+
+#medicalTool{
+	height: 258px;
+	width: 258px;
+	position: absolute;
+	bottom: 100px;
+	left: 16px;
+	opacity: 0.08;
+}
+
+#loginBody{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background: none;
+}
+
+header{
+	width: 100%;
+	height: 80px;
+	color: var(--pageBlack);
+	font-family: 'SF Pro Display Bold', sans-serif;
+	font-size: 23px;
+	padding-top: 30px;
+	padding-left: 40px;
+}
+
+#loginContainer{
+	height: calc(100% - 80px);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#loginDiv{
+	height: 400px;
+	width: 500px;
+	margin-top: 3em;
+}
+
+#loginDivHeader{
+	height: 60px;
+	font-size: 24px;
+	font-family: 'SF Pro Display Bold', sans-serif;
+	color: #023664;
+}
+
+#loginDivHeaderText{
+	font-family: 'SF Pro Display Light', sans-serif;
+	font-size: 19px;
+	color: #023664;
+	padding-top: .3em;
+	padding-right: 1em;
+	padding-left: 1em;
+	text-align: center;
+	font-weight: bold;
+	opacity: 0.8;
+	margin-bottom: 2em;
+}
+
+.loginInput{
+	margin-top: 1em;
+	height: 60px;
+	padding-right: 2em;
+	margin-left: 2em;
+}
+
+#loginBtn{
+	background: #09A5DB;
+	border-radius: 5px;
+	height: 50px;
+	width: 100%;
+	color: white;
+	font-family: 'SF Pro Display Light', sans-serif;
+	font-size: 20px;
+	margin-top: 1.5em;
+	cursor: pointer;
+}
+
+
+/* label focus color */
+   .input-field input[type=text]:focus + label {
+	    color: var(--pageBlue) !important;
+}
+/* label underline focus color */
+   .input-field input[type=text]:focus {
+	    border-bottom: 1px solid #023664 !important;
+	    box-shadow: 0 1px 0 0 #023664 !important;
+	    opacity: 0.2;
+   }
+
+
+
 
 
 
