@@ -868,15 +868,20 @@ header{
 
 
 /* label focus color */
-   .input-field input[type=text]:focus + label {
-	    color: var(--pageBlue) !important;
+.input-field input[type=text]:focus + label {
+    color: var(--pageBlue) !important;
 }
 /* label underline focus color */
-   .input-field input[type=text]:focus {
-	    border-bottom: 1px solid #023664 !important;
-	    box-shadow: 0 1px 0 0 #023664 !important;
-	    opacity: 0.2;
-   }
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #d6e3eb !important;
+    box-shadow: 0 1px 0 0 #d6e3eb !important;
+}
+
+.input-field input[type=text] {
+    color: #023664 !important;
+    font-size: 20px;
+    font-family: 'SF Pro Display Medium', sans-serif;
+}
 
 
 
