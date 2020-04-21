@@ -4,6 +4,46 @@ document.addEventListener('DOMContentLoaded', () => {
 		let disableMobile = document.querySelector('#disableMobile');
 		disableMobile.style.display = 'flex';
 	}
+
+	// Handle logging in
+	loginBtn = document.querySelector('#loginBtn');
+	loginBtn.addEventListener('click', () => {
+		let username = document.querySelector('#username').value;
+		let password = document.querySelector('#password').value;
+		let loginError = document.querySelector('#loginError');
+		console.log(username);
+		console.log(password);
+		login(username, password)
+		.then(data => {
+			if(!data.success){
+				loginError.style.display = 'block';
+			}
+			else{
+				let token = data.token;
+				localStorage.setItem("healthTok", token);
+				window.location.assign("./index.html");
+				loginError.style.display = 'none';
+				console.log("Hey");
+			}
+			// loginError.style.display = 'none';
+			console.log("The data is => ", data);
+		})
+		.catch(err => {
+			loginError.style.display = "block";
+			console.log("Could not login => ", err);
+		})
+	});
+
+	function login(username, password){
+		return fetch("https://curefb.herokuapp.com/api/v1/healthcentre/login", {
+			method: 'POST',
+			headers: {
+		      'Content-Type': 'application/json'
+		    },
+			body: JSON.stringify({email: username, password})
+		})
+		.then(res => res.json())
+	}
 });
 
 window.mobilecheck = function() {

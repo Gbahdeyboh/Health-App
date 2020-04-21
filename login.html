@@ -21,6 +21,16 @@
     <script type="text/javascript" src="js/fontawesome-all.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/auth.js"></script>
+    <script type="text/javascript">
+        // Check if the user is logged in and redirect if he isn't
+        let token = localStorage.getItem("healthTok");
+        if(token){
+			window.location.assign("./index.html");
+        }
+        else{
+        	console.log("there is no token");
+        }
+    </script>
 </head>
 <body>
 	<section class="row" id="loginBodyBackground">
@@ -36,6 +46,7 @@
 				<div class="displayFlex" id="loginDivHeaderText">
 					Login to help students in distress and access their relevant medical details
 				</div>
+				<div id="loginError">Invalid username or password</div>
 				<div class="loginInput input-field">
 					<input type="text" id="username">
 					<label for="username">Username</label>

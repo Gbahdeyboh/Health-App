@@ -844,7 +844,7 @@ header{
 	text-align: center;
 	font-weight: bold;
 	opacity: 0.8;
-	margin-bottom: 2em;
+	margin-bottom: 1.5em;
 }
 
 .loginInput{
@@ -881,6 +881,13 @@ header{
     color: #023664 !important;
     font-size: 20px;
     font-family: 'SF Pro Display Medium', sans-serif;
+}
+
+#loginError{
+	font-family: 'SF Pro Display Light', sans-serif;
+	color: red;
+	padding-left: 2em;
+	display: none;
 }
 
 
