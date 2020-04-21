@@ -11,10 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		let username = document.querySelector('#username').value;
 		let password = document.querySelector('#password').value;
 		let loginError = document.querySelector('#loginError');
+		let loginLoaderBackground = document.querySelector('#loginLoaderBackground');
+		let loginLoader = document.querySelector('#loginLoader');
+		loginLoaderBackground.style.display = "flex";
+		loginLoader.style.display = "flex";
 		console.log(username);
 		console.log(password);
 		login(username, password)
 		.then(data => {
+			// When request is completed, remove the loaders
+			loginLoaderBackground.style.display = 'none';
+			loginLoader.style.display = 'none';
 			if(!data.success){
 				loginError.style.display = 'block';
 			}
@@ -29,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("The data is => ", data);
 		})
 		.catch(err => {
+			loginLoaderBackground.style.display = 'none';
+			loginLoader.style.display = 'none';
 			loginError.style.display = "block";
 			console.log("Could not login => ", err);
 		})

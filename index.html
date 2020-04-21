@@ -21,6 +21,16 @@
     <script type="text/javascript" src="js/fontawesome-all.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        // Check if the user is logged in and redirect if he isn't
+        let token = localStorage.getItem("healthTok");
+        if(token){
+        	console.log("there is a token");
+        }
+        else{
+			window.location.assign("./login.html");
+        }
+    </script>
 </head>
 <body>
 	<section class="row" id="pageBody">

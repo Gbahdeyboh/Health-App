@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Load the student data from the server and populate the DOM with it
-	let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJoZGljNzMwMmljbXMiLCJpYXQiOjE1ODczMDQ3NjQsImV4cCI6MTU4NzQ3NzU2NH0.Vp7q74unDdY5LBOw2Vr550YoTNmKmUSIkEdhUPvRRtY";
+	let token = localStorage.getItem("healthTok");
 	let loader = document.querySelector('#loaderBody');
 	function fetchPings(nextUrl){
 		/**
