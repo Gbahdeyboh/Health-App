@@ -53,6 +53,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		.then(res => res.json())
 	}
+
+
+	// Display the password when the eye Icon is clicked
+	let passwordEyeIcon = document.querySelector('#passwordViewIcon');
+	let passwordInput = document.querySelector('#password');
+	console.log(passwordEyeIcon);
+	passwordEyeIcon.addEventListener('click', () => {
+		if(passwordEyeIcon.querySelector('svg').classList.contains('fa-eye')){
+			// Chamge the icon
+			passwordEyeIcon.querySelector('svg').classList.remove('fa-eye');
+			passwordEyeIcon.querySelector('svg').classList.add('fa-eye-slash');
+			// View the text
+			password.type = "text";
+		}
+		else{
+			passwordEyeIcon.querySelector('svg').classList.remove('fa-eye-slash');
+			passwordEyeIcon.querySelector('svg').classList.add('fa-eye');
+			// View the text
+			password.type = "password";
+		}
+	});
 });
 
 window.mobilecheck = function() {
