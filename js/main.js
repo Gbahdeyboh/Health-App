@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 			.then(res => res.json())
 			.then(data => {
-				console.log("The loaded data is ", data);
+				// console.log("The loaded data is ", data);
 				// Remove the loader
 				loader.style.display = "none";
 				let pingInfoSection = document.querySelector('#allPingDetails');
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				let payload = data.data;
 				// remove the loader 
 				someStudentsLoaderBody.style.display = 'none';
-				console.log("payload=> ", payload);
+				// console.log("payload=> ", payload);
 				payload.forEach(student => {
 					someStudentData.innerHTML += `
 						<div class="displayFlex recentAddedBody">
@@ -174,18 +174,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 			.then(res => res.json())
 			.then(data => {
-				console.log("The loaded data is ", data);
+				console.log("The loaded data isssssss soooo", data);
 				// Remove the loader
 				studentLoader.style.display = "none";
 				if(data.success){
 					let studentsSections = document.querySelector("#studentsSections");
 					// store the new url
 					let newUrl = data.meta_data.links.next;
-					localStorage.setItem('nextUrl', newUrl); 
+					console.log("New URl is ", newUrl);
+					localStorage.setItem('nextStudentUrl', newUrl);
 					data.data.forEach(pingInfo => {
 						// Populate the sudent section
 						studentsSections.innerHTML += `
-							<div class="studentSectionDiv">
+							<div class="studentSectionDiv" data-id="${pingInfo.id}">
 								<div class="col m2 l2 fullHeight displayFlex">
 									<img src="./images/profile2.jpg" class="studentsSectionImages">
 								</div>
@@ -201,6 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
 						`
 					});
 				}
+				// Listen to click events on all students body
+				selectStudents();
 			})
 			.catch(err => {
 				console.log("Could not fetch students data => ", err);
@@ -212,7 +215,44 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	fetchStudents("https://curefb.herokuapp.com/api/v1/healthcentre/student");
-	observeElement('studentObserver', studentLoader, fetchStudents);
+	observeElement('studentObserver', studentLoader, 'nextStudentUrl', fetchStudents);
+
+
+	function selectStudents(){
+		let studentDiv = document.querySelectorAll(".studentSectionDiv");
+		studentDiv = Array.from(studentDiv);
+		studentDiv.forEach(student => {
+			student.addEventListener('click', () => {
+				let id = student.dataset.id;
+				// fetch the students data
+				fetch(`https://curefb.herokuapp.com/api/v1/healthcentre/student/${id}`, {
+					headers: {
+						'Authorization': `Bearer ${token}`
+					}
+				})
+				.then(res => res.json())
+				.then(data => {
+					if(data.success){
+						data = data.data;
+						console.log("The data is => ", data);
+						let studentDetailsName = document.querySelector('#studentDetailsName');
+						let studentDetailsClinicNo = document.querySelector('#studentDetailsClinicNo');
+						// let studentDetailsLevel = document.querySelector('#studentDetailsLevel');
+						let studentDetailsNumber = document.querySelector('#studentDetailsNumber');
+						let studentDetailProfilePicture = document.querySelector('#studentDetailProfilePicture');
+						studentDetailsName.textContent = `${data.last_name} ${data.first_name}`;
+						studentDetailsClinicNo.textContent = data.clinic_number;
+						// studentDetailsLevel.textContent = "level";
+						studentDetailsNumber.textContent = data.mobile_number;
+						studentDetailProfilePicture.src = data.image;
+					}
+				})
+				.catch(err => {
+					console.log("Can't fethc student data => ", err);
+				});
+			})
+		})
+	}
 	
 
 
@@ -230,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-	function observeElement(observe, loader, callback){
+	function observeElement(observe, loader, storageKey, callback){
 		/**
 		* @param {String} observe - Element to observe
 		* @param {Function} callback - function to be executed after observation is made
@@ -240,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if(entry.intersectionRatio > 0){
 					console.log("In view.................");
 					loader.style.display = "flex";
-					let nextUrl =localStorage.getItem('nextUrl');
+					let nextUrl = localStorage.getItem(storageKey);
 					if(nextUrl){
 						callback(nextUrl);
 					}
@@ -250,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		observer.observe(document.querySelector(`#${observe}`));
 	}
-	observeElement('observer', loader, fetchPings);
+	observeElement('observer', loader, 'nextUrl', fetchPings);
 	// Load the initial data
     fetchPings("https://"+"curefb.herokuapp.com/api/v1/healthcentre/ping");
     // Socket connection to latest ping

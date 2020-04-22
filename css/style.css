@@ -771,6 +771,21 @@
 	color: #EB5757;
 }
 
+.studentSectionDiv:hover{
+	cursor: pointer;
+	background: #d4e4ea;
+}
+
+#studentDetailProfilePicture{
+	border-radius: 100px;
+	object-fit: cover;
+}
+
+
+
+
+
+
 
 
 /*Login Page below*/
