@@ -190,12 +190,16 @@
 									</div>
 									<div class="fullHeight col m10 l10">
 										<div class="" id="latestPingSectionOne">
-											<div class="col m8 l8 fullHeight">
+											<div class="col m6 l6 fullHeight">
 												<div class="latestPinger" id="latestPingerName">Wendy Flores</div>
 												<div class="latestPinger" id="latestPingerClinicNo">ST053108</div>
 												<div class="latestPinger" id="latestPingerTime">10:52AM</div>
 											</div>
-											<div class="col m4 l4 fullHeight displayFlex">
+											<div class="col m6 l6 fullHeight displayFlex">
+												<div class="displayFlex" id="startChatBtn">
+													Chat
+													<img src="./css/icons/chat.svg" style="padding-left: 1em;">
+												</div>
 												<div class="displayFlex" id="videoCallBtn">
 													Video Call
 													<img src="./css/icons/video_call.svg" style="padding-left: 1em;">
@@ -383,6 +387,46 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<!-- Chat section -->
+		<div class="z-depth-1" id="chatBodyContainer">
+			<div class="" id="chatBodyHead">
+				<div class="col m2 l2 fullHeight displayFlex">
+					<img src="./images/profile2.jpg" class="studentsSectionImages" alt="Chat user Image here">
+				</div>
+				<div class="col m6 l6 fullHeight">
+					<div class="halfHeight" id="chatUserName">Arlene Cooper</div>
+					<div class="halfHeight" id="chatUserClinic">ST053108</div>
+				</div>
+				<div class="col m4 l4 fullHeight" id="chatBox">
+					<div class="displayFlex">
+						<img src="./css/icons/video_call_blue.svg" alt="Video Icon here">
+					</div>
+					<div class="displayFlex">
+						<img src="./css/icons/close.svg" alt="Chat Cance Image here">
+					</div>
+				</div>
+			</div>
+			<div class="" id="chatBody">
+				<div class="receivedMessage">
+					<div class="fullHeight col m2 l2 displayFlex fluid">
+						<img src="./images/profile4.jpeg" class="studentsSectionImages" alt="Chat user Image here">
+					</div>
+					<div class="fullHeight col m10 l10 fluid">
+						<div class="chatMessageBody fluid">
+							Hello there, I have a problem sleeping at night. Last night, I had problem with my stomach and it disturbed me overnight. I’m scared I have a problem with my stomach and I’m really worried. Looking forward to hearing from you. Regards.
+						</div>
+					</div>
+				</div>
+				<div class="sentMessage">
+					<div class="sentMessageBody">
+						Hello there, I have a problem sleeping at night. Last night, I had problem with my stomach and it disturbed me overnight. I’m scared I have a problem with my stomach and I’m really worried. Looking forward to hearing from you. Regards.
+					</div>
+				</div>
+			</div>
+			<div class="chatReplyBody">
+				<input type="text" class="browser-default" placeholder="Type a message...." id="chatReplyText">
 			</div>
 		</div>
 	</section>
