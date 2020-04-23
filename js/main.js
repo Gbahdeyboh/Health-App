@@ -63,12 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
 						formattedTime = formattedTime.join(':') + ` ${formattedTimeM}`;
 						// console.log("The formatted zzZ")
 						pingInfoSection.innerHTML += `
-							<div class="" id="pingDetail" data-is=${pingInfo.id}>
+							<div class="pingDetail" data-is=${pingInfo.id}>
 								<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
-									<img src="${pingInfo.student.image}">
+									<img src="${pingInfo.student.image}" alt="Pingers Image here">
+									<!-- Has an active class when currently pinging and a passive one when not -->
+									<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator passive">
 								</div>
 								<div class="col m9 l9 fullHeight">
-									<div class="" id="pingDetailTextBodyOne">
+									<div class="pingDetailTextBodyOne">
 										<div class="fullHeight col m8 l8 pingDetailName">${pingInfo.student.first_name} ${pingInfo.student.last_name}</div>
 										<div class="fullHeight col m4 l4 pingDetailTime">${formattedDate} ${formattedTime}</div>
 									</div>
@@ -253,26 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		})
 	}
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 	function observeElement(observe, loader, storageKey, callback){
 		/**
-		* @param {String} observe - Element to observe
+		* @desc - Used to observe certain elments when they move into the page viewport 
+		* @param {String} observe - ID of the Element to be observed
+		* @param {String} loader - The ID of the loader to display when the element is in view
+		* @param {storageKey} - The key for the localStorage Location of the next URL to be loaded
 		* @param {Function} callback - function to be executed after observation is made
 		*/
 		let observer = new IntersectionObserver((entries) => {
@@ -287,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			})
 		});
-
+		// Observe the Element which ID was specified
 		observer.observe(document.querySelector(`#${observe}`));
 	}
 	observeElement('observer', loader, 'nextUrl', fetchPings);
@@ -298,6 +289,54 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.onmessage = function(event){
     	console.log("Pinginggg.....", event.data);
     }
+
+
+
+
+
+    // All Page Actions such as button clicks are specified below
+    let closeChatBtn = document.querySelector('#closeChat');
+    let chatContainer = document.querySelector('#chatBodyContainer');
+    closeChatBtn.addEventListener('click', () => {
+	    chatContainer.style.display = "none";   	
+    });
+
+    // Display chat section
+    let startChatBtn = document.querySelector('#startChatBtn');
+    startChatBtn.addEventListener('click', () => {
+    	chatContainer.style.display = "block";
+    });
+
+    // Display the video call section
+    let videoCallBtn = document.querySelector('#videoCallBtn');
+    let videoCallSection = document.querySelector('#videoCallSection');
+    videoCallBtn.addEventListener('click', () => {
+    	videoCallSection.style.display = "block";
+    });
+
+    // End the video call and close the video call display
+    let videoCallEndBtn = document.querySelector('#videoCallEndBtn');
+    videoCallEndBtn.addEventListener('click', () => {
+    	videoCallSection.style.display = "none";
+    });
+
+    // Display full ping messages once the ping message is clicked in the history page
+    let historyPingMessages = document.querySelectorAll('.pingHistoryColumn');
+    historyPingMessages = Array.from(historyPingMessages);
+
+    historyPingMessages.forEach(pingMessage => {
+		let fullPingMessageContainer = pingMessage.nextElementSibling;
+    	// Display the ping message once it is hovered on
+    	pingMessage.addEventListener('mouseover', () => {
+    		// Display the full message
+    		fullPingMessageContainer.style.display = "block";
+    	});
+    	// Remove the ping message onco mouse moves out of it
+    	pingMessage.addEventListener('mouseout', () => {
+    		// Display the full message
+    		fullPingMessageContainer.style.display = "none";
+    	});
+    })
 });
 
 window.mobilecheck = function() {

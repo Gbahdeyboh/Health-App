@@ -33,7 +33,7 @@
     </script>
 </head>
 <body>
-	<section class="row" id="pageBody">
+	<section class="row green" id="pageBody">
 		<div class="fullHeight white" id="sectionMenu">
 			<div class="" id="appName">Health App</div>
 			<div class="sideMenuText" id="mainMenuText">Main Menu</div>
@@ -145,9 +145,26 @@
 									<!-- Ping Info's below -->
 									<div class="" id="pingInfoSection">
 										<div id="allPingDetails">
-											<div class="" id="pingDetail">
+											<div class="pingDetail">
 												<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
-													<img src="./images/profile1.jpg">
+													<img src="./images/profile1.jpg" alt="Pingers Image here">
+													<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
+												</div>
+												<div class="col m9 l9 fullHeight">
+													<div class="pingDetailTextBodyOne">
+														<div class="fullHeight col m8 l8 pingDetailName">Wendy Flores</div>
+														<div class="fullHeight col m4 l4 pingDetailTime">10:52AM</div>
+													</div>
+													<div class="pingDetailTextBodyTwo">
+														Hello There, I'm currently at the school gate with my friend and ...
+													</div>
+												</div>
+											</div>
+											<div class="pingDetail">
+												<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
+													<img src="./images/profile1.jpg" alt="Pingers Image here">
+													<!-- Has an active class when currently pinging and a passive one when not -->
+													<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
 												</div>
 												<div class="col m9 l9 fullHeight">
 													<div class="" id="pingDetailTextBodyOne">
@@ -362,6 +379,12 @@
 								<div class="" id="pingHistoryTableRows">
 									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">1</div>
 									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
+									<div class="pingHistoryFullMessage z-depth-2">
+										<div class="pingHistoryFullMessageHeader">Ping Message</div>
+										<div class="pingHistoryFullMessageText">
+											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
+										</div>
+									</div>
 									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
 									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
 										<div class="historyResponseStatus replied displayFlex">Replied</div>
@@ -370,6 +393,12 @@
 								<div class="" id="pingHistoryTableRows">
 									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">2</div>
 									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
+									<div class="pingHistoryFullMessage z-depth-2">
+										<div class="pingHistoryFullMessageHeader">Ping Message</div>
+										<div class="pingHistoryFullMessageText">
+											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
+										</div>
+									</div>
 									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
 									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
 										<div class="historyResponseStatus ignored displayFlex">Ignored</div>
@@ -378,6 +407,12 @@
 								<div class="" id="pingHistoryTableRows">
 									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">3</div>
 									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
+									<div class="pingHistoryFullMessage z-depth-2">
+										<div class="pingHistoryFullMessageHeader">Ping Message</div>
+										<div class="pingHistoryFullMessageText">
+											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
+										</div>
+									</div>
 									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
 									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
 										<div class="historyResponseStatus replied displayFlex">Replied</div>
@@ -392,44 +427,107 @@
 		<!-- Chat section -->
 		<div class="z-depth-1" id="chatBodyContainer">
 			<div class="" id="chatBodyHead">
-				<div class="col m2 l2 fullHeight displayFlex">
+				<div class="col m1 l1 fullHeight displayFlexLeft">
 					<img src="./images/profile2.jpg" class="studentsSectionImages" alt="Chat user Image here">
 				</div>
-				<div class="col m6 l6 fullHeight">
+				<div class="col m7 l7 fullHeight padL" style="margin-left: .5em; margin-right: 2.2em;">
 					<div class="halfHeight" id="chatUserName">Arlene Cooper</div>
 					<div class="halfHeight" id="chatUserClinic">ST053108</div>
 				</div>
-				<div class="col m4 l4 fullHeight" id="chatBox">
+				<div class="col m3 l3 fullHeight" id="chatBox">
 					<div class="displayFlex">
 						<img src="./css/icons/video_call_blue.svg" alt="Video Icon here">
 					</div>
-					<div class="displayFlex">
+					<div class="displayFlex" id="closeChat">
 						<img src="./css/icons/close.svg" alt="Chat Cance Image here">
 					</div>
 				</div>
 			</div>
 			<div class="" id="chatBody">
-				<div class="receivedMessage">
-					<div class="fullHeight col m2 l2 displayFlex fluid">
+				<div class="receivedMessage row">
+					<div class="col m2 l2 displayFlex">
 						<img src="./images/profile4.jpeg" class="studentsSectionImages" alt="Chat user Image here">
 					</div>
-					<div class="fullHeight col m10 l10 fluid">
-						<div class="chatMessageBody fluid">
+					<div class="col m10 l10"> 
+						<div class="chatMessageBody">
 							Hello there, I have a problem sleeping at night. Last night, I had problem with my stomach and it disturbed me overnight. I’m scared I have a problem with my stomach and I’m really worried. Looking forward to hearing from you. Regards.
 						</div>
 					</div>
 				</div>
 				<div class="sentMessage">
 					<div class="sentMessageBody">
-						Hello there, I have a problem sleeping at night. Last night, I had problem with my stomach and it disturbed me overnight. I’m scared I have a problem with my stomach and I’m really worried. Looking forward to hearing from you. Regards.
+						How are you? Judging from what you sent, I realised that you’ve been stressing yourself. You need to take some rest, get yourself some good food, and you’ll be fine.
 					</div>
 				</div>
+				<div class="receivedMessage row">
+					<div class="col m2 l2 displayFlex">
+						<img src="./images/profile4.jpeg" class="studentsSectionImages" alt="Chat user Image here">
+					</div>
+					<div class="col m10 l10"> 
+						<div class="chatMessageBody">
+							Alright, thank you. Are there medications you could recommend? Something that can give me a slight relief??
+						</div>
+					</div>
+				</div>
+				<div class="sentMessage">
+					<div class="sentMessageBody">
+						Take lots and lots of water, some pain killers and most Importantly, have a lot of rest.
+					</div>
+				</div>	
 			</div>
 			<div class="chatReplyBody">
 				<input type="text" class="browser-default" placeholder="Type a message...." id="chatReplyText">
 			</div>
 		</div>
 	</section>
+	<!-- Video Call Section -->
+	<section class="" id="videoCallSection">
+		<div class="row" id="videoCallSectionHeader">
+			<div class="col m3 l3 fullHeight" id="videoCallHeaderName">
+				Kazeem Oluwatosin
+			</div>
+			<div class="col m7 l7 fullHeight displayFlex padRight" id="videoCallHeaderTime">
+				10:50
+			</div>
+			<div class="col m2 l2 fullHeight displayFlex">
+				<img src="./css/icons/bell.svg" style="cursor: pointer">
+				<div class="" id="adminBtnBody">
+					<div  class="col m4 l4 fullHeight displayFlexLeft">
+						<img src="./css/icons/unaab_logo.svg" id="funaabLogo">
+					</div>
+					<div class="col m8 l8 fullHeight displayFlexLeft" id="adminText">
+						Admin
+						<img src="./css/icons/arrow_down.svg" id="adminTextArrow">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="" id="videoCallBody">
+			<div class="row" id="videoCallViewSection">
+				<div class="col m4 l4 fullHeight"></div>
+				<div class="col m4 l4 fullHeight displayFlex">
+					<img src="./images/callerImage.png" alt="Callers Image here" id="callersImage">
+				</div>
+				<div class="col m4 l4 fullHeight">
+					<div style="height: 64%;"></div>
+					<div style="height: 36%">
+						<img src="./images/profile4.jpeg" alt="DoctorsImage here..." id="doctorsImage">
+					</div>
+				</div>
+			</div>
+			<div class="displayFlex" id="videoCallButtonsBody">
+				<div class="videoCallButtons displayFlex waves-effect waves-light">
+					<img src="./images/vidCallChat.png" alt="Video call chat Icon">
+				</div>
+				<div class="videoCallButtons cancel displayFlex waves-effect waves-light" id="videoCallEndBtn">
+					<img src="./images/vidCallCancel.png" alt="Video call cancel Icon">
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- No Mobile Display Section -->
 	<section class="displayFlex" id="disableMobile">
 		<h4>Please only view this site on a computer</h4>
 	</section>
