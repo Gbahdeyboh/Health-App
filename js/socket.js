@@ -2,10 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Socket connection to latest ping
 	let socket = new WebSocket("wss://curefb.herokuapp.com/ws/pings");
 	socket.onmessage = function(event){
-		console.log(event)
+		let data = event.data;
+		data = JSON.parse(data);
+		let id = data.text.id;
+		sessionStorage.setItem('activePingID', id);
+		console.log("The id is ", id);
+		console.log(data);
 		let pingsBody = document.querySelector("#allPingDetails");
 		let newPing = `
-			<div class="pingDetail">
+			<div class="pingDetail" data-id="${data.text.id}">
 				<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
 					<img src="./images/profile1.jpg" alt="Pingers Image here">
 					<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
@@ -13,17 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
 				<div class="col m9 l9 fullHeight">
 					<div class="pingDetailTextBodyOne">
 						<div class="fullHeight col m8 l8 pingDetailName">Wendy Flores</div>
-						<div class="fullHeight col m4 l4 pingDetailTime">10:52AM</div>
+						<div class="fullHeight col m4 l4 pingDetailTime">${formatDate(data.text.created_at).formattedTime}</div>
 					</div>
 					<div class="pingDetailTextBodyTwo">
-						Hello There, I'm currently at the school ......... ...
+						${data.text.message.substr(0, 50)}...
 					</div>
 				</div>
 			</div>
 		`
-		pingsBody.prepend(newPing);
+		let frag = appendStringAsNodes(newPing)
+		pingsBody.prepend(frag);
 	}
 });
+
+function appendStringAsNodes(html) {
+    var frag = document.createDocumentFragment(),
+        tmp = document.createElement('div'), child;
+    tmp.innerHTML = html;
+    // Append elements in a loop to a DocumentFragment, so that the browser does
+    // not re-render the document for each node
+    while (child = tmp.firstChild) {
+        frag.appendChild(child);
+    }
+    // element.appendChild(frag); // Now, append all elements at once
+    // frag = tmp = null;
+    return frag;
+}
+
+function pingRespoder(){
+	let id = sessionStorage.getItem('activePingID');
+	let socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`);
+	socket.onmessage = function(event){}
+}
 
 
 function formatDate(dateTime){
