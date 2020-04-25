@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/fontawesome-all.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/socket.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
         // Check if the user is logged in and redirect if he isn't
@@ -376,47 +377,37 @@
 									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">Response</div>
 								</div>
 
-								<div class="" id="pingHistoryTableRows">
-									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">1</div>
-									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
-									<div class="pingHistoryFullMessage z-depth-2">
-										<div class="pingHistoryFullMessageHeader">Ping Message</div>
-										<div class="pingHistoryFullMessageText">
-											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
-										</div>
-									</div>
-									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
-									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
-										<div class="historyResponseStatus replied displayFlex">Replied</div>
-									</div>
-								</div>
-								<div class="" id="pingHistoryTableRows">
-									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">2</div>
-									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
-									<div class="pingHistoryFullMessage z-depth-2">
-										<div class="pingHistoryFullMessageHeader">Ping Message</div>
-										<div class="pingHistoryFullMessageText">
-											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
-										</div>
-									</div>
-									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
-									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
-										<div class="historyResponseStatus ignored displayFlex">Ignored</div>
+								<div class="displayFlex">	
+									<div class="displayFlexColumn" id="historyLoaderBody">
+										<br />
+										<div class="preloader-wrapper active">
+										    <div class="spinner-layer spinner-blue-only">
+											    <div class="circle-clipper left">
+											        <div class="circle"></div>
+											    </div><div class="gap-patch">
+											        <div class="circle"></div>
+											    </div><div class="circle-clipper right">
+											        <div class="circle"></div>
+											    </div>
+										    </div>
+										 </div>
 									</div>
 								</div>
-								<div class="" id="pingHistoryTableRows">
-									<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">3</div>
-									<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn">I've been unable to sleep...</div>
-									<div class="pingHistoryFullMessage z-depth-2">
-										<div class="pingHistoryFullMessageHeader">Ping Message</div>
-										<div class="pingHistoryFullMessageText">
-											I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
+								<div id="pingHistoryContainer">
+									<!-- <div class="" id="pingHistoryTableRows">
+										<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">1</div>
+										<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn message">I've been unable to sleep...</div>
+										<div class="pingHistoryFullMessage z-depth-2">
+											<div class="pingHistoryFullMessageHeader">Ping Message</div>
+											<div class="pingHistoryFullMessageText">
+												I’ve been unabke to sleep because Supreme is talking in the nonsense, he’s talking in the rubbish, he is talking in the things that does not have any sense.
+											</div>
 										</div>
-									</div>
-									<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
-									<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
-										<div class="historyResponseStatus replied displayFlex">Replied</div>
-									</div>
+										<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
+										<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
+											<div class="historyResponseStatus replied displayFlex">Replied</div>
+										</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

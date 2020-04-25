@@ -32,36 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					data.data.forEach(pingInfo => {
 						// Extract the date data returned
 						let dateTime = pingInfo.created_at;
-						dateTime = dateTime.split('.');
-						dateTime.pop();
-						dateTime = dateTime[0].split('T');
-						// date
-						let date = dateTime[0];
-						date = date.split('-');
-						let year = date[0];
-						let month = date[1];
-						let day = date[2];
-						// time
-						let time = dateTime[1];
-						time = time.split(':');
-						let hour = time[0];
-						let minutes = time[1];
-						let seconds = time[2];
-						// format date and time to required format
-						let formattedDate = new Date(year, month, day, hour, minutes, seconds);
-						let formattedTime = formattedDate.toLocaleTimeString();
-						// format date
-						formattedDate = formattedDate.toDateString();
-						formattedDate = formattedDate.split(' ');
-						formattedDate.shift();
-						let formattedDateYear = formattedDate.pop();
-						formattedDate.push(',' + formattedDateYear);
-						formattedDate = formattedDate.join(' ');
-						// format time
-						formattedTime = formattedTime.split(':');
-						let formattedTimeM = formattedTime.pop().split(' ').pop();
-						formattedTime = formattedTime.join(':') + ` ${formattedTimeM}`;
-						// console.log("The formatted zzZ")
+						let {formattedDate, formattedTime} = formatDate(dateTime);
 						pingInfoSection.innerHTML += `
 							<div class="pingDetail" data-is=${pingInfo.id}>
 								<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
@@ -72,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								<div class="col m9 l9 fullHeight">
 									<div class="pingDetailTextBodyOne">
 										<div class="fullHeight col m8 l8 pingDetailName">${pingInfo.student.first_name} ${pingInfo.student.last_name}</div>
-										<div class="fullHeight col m4 l4 pingDetailTime">${formattedDate} ${formattedTime}</div>
+										<div class="fullHeight col m4 l4 pingDetailTime">${formattedDate}</div>
 									</div>
 									<div class="pingDetailTextBodyTwo">
 										${pingInfo.message}
@@ -190,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						studentsSections.innerHTML += `
 							<div class="studentSectionDiv" data-id="${pingInfo.id}">
 								<div class="col m2 l2 fullHeight displayFlex">
-									<img src="./images/profile2.jpg" class="studentsSectionImages">
+									<img src="${pingInfo.image}" class="studentsSectionImages">
 								</div>
 								<div class="col m7 l7 fullHeight">
 									<div class="halfHeight studentsSectionName">${pingInfo.last_name} ${pingInfo.first_name}</div>
@@ -225,7 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		studentDiv = Array.from(studentDiv);
 		studentDiv.forEach(student => {
 			student.addEventListener('click', () => {
-				let id = student.dataset.id;
+				// Display the loader
+				let historyLoaderBody = document.querySelector('#historyLoaderBody');
+				historyLoaderBody.style.display = "block";
+				let id = student.dataset.id; //The students ID
 				// fetch the students data
 				fetch(`https://curefb.herokuapp.com/api/v1/healthcentre/student/${id}`, {
 					headers: {
@@ -252,9 +226,85 @@ document.addEventListener('DOMContentLoaded', () => {
 				.catch(err => {
 					console.log("Can't fethc student data => ", err);
 				});
+
+				// Fetch the students history
+				fetchPingHistory(id);
 			})
 		})
 	}
+
+
+	// Fetch the ping history of a student
+	function fetchPingHistory(id){
+		// Display the loader 
+		let studentLoaderBody = document.querySelector('#studentLoaderBody');
+		historyLoaderBody.style.display = "none";
+		// fetch the students history
+		fetch(`https://curefb.herokuapp.com/api/v1/healthcentre/ping?student=${id}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.success){
+				let payload = data.data;
+				let historyContainer = document.querySelector("#pingHistoryContainer");
+				// Clear the previous student history
+				historyContainer.innerHTML = "";
+				if(payload.length == 0){
+					historyContainer.innerHTML = "<div class='displayFlex'><h5>No ping has ever been made</h5></div>"
+				}
+				payload.forEach((history, index) => {
+					let status = history.status === 'accepted' ? 'replied' : 'ignored';
+					historyContainer.innerHTML += `
+						<div class="" id="pingHistoryTableRows">
+							<div class="col m1 l1 fullHeight displayFlex pingHistoryColumn">${index + 1}</div>
+							<div class="col m4 l4 fullHeight displayFlex pingHistoryColumn message">${history.message.substr(0, 25)}...</div>
+							<div class="pingHistoryFullMessage z-depth-2">
+								<div class="pingHistoryFullMessageHeader">Ping Message</div>
+								<div class="pingHistoryFullMessageText">
+									${history.message}
+								</div>
+							</div>
+							<div class="col m4 l4 historyDate fullHeight displayFlex pingHistoryColumn">September 30, 2019 7:16PM</div>
+							<div class="col m3 l3 fullHeight displayFlex pingHistoryColumn">
+								<div class="historyResponseStatus ${status} displayFlex">${status}</div>
+							</div>
+						</div>
+					`
+				});
+				displayFullPingMessage();
+			}
+			console.log("Student History is => ", data);
+		})
+		.catch(err => {
+
+		});
+	}
+
+	function displayFullPingMessage(){
+	    // Display full ping messages once the ping message is clicked in the history page
+	    let historyPingMessages = document.querySelectorAll('.pingHistoryColumn.message');
+	    historyPingMessages = Array.from(historyPingMessages);
+
+	    historyPingMessages.forEach(pingMessage => {
+			let fullPingMessageContainer = pingMessage.nextElementSibling;
+	    	// Display the ping message once it is hovered on
+	    	pingMessage.addEventListener('mouseover', () => {
+	    		// Display the full message
+	    		fullPingMessageContainer.style.display = "block";
+	    	});
+	    	// Remove the ping message onco mouse moves out of it
+	    	pingMessage.addEventListener('mouseout', () => {
+	    		// Display the full message
+	    		fullPingMessageContainer.style.display = "none";
+	    	});
+	    })
+    }
+
+
+
 
 
 
@@ -284,12 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	observeElement('observer', loader, 'nextUrl', fetchPings);
 	// Load the initial data
     fetchPings("https://"+"curefb.herokuapp.com/api/v1/healthcentre/ping");
-    // Socket connection to latest ping
-    let socket = new WebSocket("wss://curefb.herokuapp.com/ws/pings");
-    socket.onmessage = function(event){
-    	console.log("Pinginggg.....", event.data);
-    }
-
 
 
 
@@ -319,24 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     videoCallEndBtn.addEventListener('click', () => {
     	videoCallSection.style.display = "none";
     });
-
-    // Display full ping messages once the ping message is clicked in the history page
-    let historyPingMessages = document.querySelectorAll('.pingHistoryColumn');
-    historyPingMessages = Array.from(historyPingMessages);
-
-    historyPingMessages.forEach(pingMessage => {
-		let fullPingMessageContainer = pingMessage.nextElementSibling;
-    	// Display the ping message once it is hovered on
-    	pingMessage.addEventListener('mouseover', () => {
-    		// Display the full message
-    		fullPingMessageContainer.style.display = "block";
-    	});
-    	// Remove the ping message onco mouse moves out of it
-    	pingMessage.addEventListener('mouseout', () => {
-    		// Display the full message
-    		fullPingMessageContainer.style.display = "none";
-    	});
-    })
 });
 
 window.mobilecheck = function() {

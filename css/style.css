@@ -136,11 +136,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 #studentsSection{
-	/*display: none;*/
+	display: none;
 }
 
 #pingsSection{
-	display: none;
+	/*display: none;*/
 }
 
 #statsSection{
@@ -640,7 +640,7 @@ body::-webkit-scrollbar-thumb {
 	height: 40px;
 	width: 40px;
 	border-radius: 100px;
-	object-fit: 'cover';
+	object-fit: cover ;
 }
 
 .studentsSectionName{
@@ -731,10 +731,6 @@ body::-webkit-scrollbar-thumb {
 	animation: glow .5s linear;
 }
 
-.pingHistoryColumn{
-	cursor: pointer;
-}
-
 .pingHistoryFullMessage{
 	display: none;
 	position: absolute;
@@ -816,6 +812,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #pingHistoryTableRows{
+	margin-top: 1em;
 	height: 50px;
 }
 
@@ -836,12 +833,14 @@ body::-webkit-scrollbar-thumb {
 .historyResponseStatus.replied{
 	border: 0.8px solid #219653;
 	background: #EEFBF3;
+	text-transform: capitalize;
 	color: #219653;
 }
 
 .historyResponseStatus.ignored{
 	border: 0.8px solid #EB5757;
 	background: #FDEFEF;
+	text-transform: capitalize;
 	color: #EB5757;
 }
 
@@ -1068,6 +1067,15 @@ body::-webkit-scrollbar-thumb {
 
 .videoCallButtons.cancel{
 	background: #EB5757;
+}
+
+#pingHistoryContainer{
+	overflow-y: scroll;
+	height: 250px;
+}
+
+#historyLoaderBody{
+	display: none;
 }
 
 
