@@ -52,6 +52,34 @@ document.addEventListener('DOMContentLoaded', () => {
 							</div>
 						`
 					});
+					// Upload the first ping message as active
+					if(nextUrl === "https://curefb.herokuapp.com/api/v1/healthcentre/ping"){
+						let latestPingerName = document.querySelector("#latestPingerName");
+						let latestPingerClinicNo = document.querySelector("#latestPingerClinicNo");
+						let latestPingerTime = document.querySelector("#latestPingerTime");
+						let latestPingMessage = document.querySelector("#latestPingMessage");
+
+						let latestPingID = data.data[0].student.id;
+						let message = data.data[0].message;
+						console.log('The lates ping data is ', data.data[0].message);
+						fetch(`https://curefb.herokuapp.com/api/v1/healthcentre/student/${latestPingID}`, {
+							headers: {
+								'Authorization': `Bearer ${token}`
+							}
+						})
+						.then(res => res.json())
+						.then(data => {
+							console.log("The leatest pinger data is ", data);
+							let payload = data.data;
+							latestPingerName.textContent = `${payload.last_name} ${payload.first_name}`;
+							latestPingerClinicNo.textContent = payload.clinic_number;
+							latestPingerTime.textContent = `${formatDate(payload.updated_at).formattedTime}`;
+							latestPingMessage.textContent = message;
+						})
+						.catch(err => {
+							console.log(err);
+						})
+					}
 				}
 			})
 			.catch(err => {
@@ -346,17 +374,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Display chat section
-    let startChatBtn = document.querySelector('#startChatBtn');
-    startChatBtn.addEventListener('click', () => {
-    	chatContainer.style.display = "block";
-    });
+    let startChatBtn = document.querySelectorAll('.startChat');
+    startChatBtn = Array.from(startChatBtn);
+    startChatBtn.forEach(btn => {
+	    btn.addEventListener('click', () => {
+	    	chatContainer.style.display = "block";
+	    	document.querySelector('#videoCallSection').style.display = 'none';
+	    });
+    })
 
     // Display the video call section
     let videoCallBtn = document.querySelector('#videoCallBtn');
+    let chatVideoCallBtn = document.querySelector('#chatVideoCall');
     let videoCallSection = document.querySelector('#videoCallSection');
-    videoCallBtn.addEventListener('click', () => {
-    	videoCallSection.style.display = "block";
-    });
+    let chatBodyContainer = document.querySelector('#chatBodyContainer');
+    [videoCallBtn, chatVideoCallBtn].forEach(btn => {
+	    btn.addEventListener('click', () => {
+	    	videoCallSection.style.display = "block";
+	    	chatBodyContainer.style.display = 'none';
+	    });
+    })
 
     // End the video call and close the video call display
     let videoCallEndBtn = document.querySelector('#videoCallEndBtn');

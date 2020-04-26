@@ -351,6 +351,9 @@ body::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 }
 
+#pingReplyButtons{
+	display: none;
+}
 #latestPingImage{
 	width: 60px;
 	height: 60px;
@@ -869,7 +872,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #chatBodyContainer{
-	display: none;
+	/*display: none;*/
 	width: 500px;
 	height: 515px;
 	position: absolute;
@@ -961,6 +964,7 @@ body::-webkit-scrollbar-thumb {
 
 .sentMessage{
 	margin-top: 20px;
+	margin-bottom: 20px;
 	margin-right: 5px;
 	width: 320px;
 	float: right;

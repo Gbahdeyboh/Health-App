@@ -2,10 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Socket connection to latest ping
 	let socket = new WebSocket("wss://curefb.herokuapp.com/ws/pings");
 	socket.onmessage = function(event){
+		// Display the reply buttons
+		let pingReplyButtons = document.querySelector("#pingReplyButtons");
+		pingReplyButtons.style.display = "flex";
+		// Display the active ping section.
+		let infoSectionLatestPingBody = document.querySelector('#infoSectionLatestPingBody');
 		let data = event.data;
 		data = JSON.parse(data);
 		let id = data.text.id;
-		sessionStorage.setItem('activePingID', id);
+		localStorage.setItem('activePingID', id);
 		console.log("The id is ", id);
 		console.log(data);
 		let pingsBody = document.querySelector("#allPingDetails");
@@ -29,6 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		let frag = appendStringAsNodes(newPing)
 		pingsBody.prepend(frag);
 	}
+
+
+	// Chat related functionalitied below
+	let chatReplyText = document.querySelector("#chatReplyText");
+	chatReplyText.addEventListener('keyup', (e) => {
+		let message = chatReplyText.value
+		if(e.keyCode === 13){
+			// sendMessage(message)
+			let chatBody = document.querySelector('#chatBody');
+			chatBody.innerHTML += `
+				<div class="sentMessage">
+					<div class="sentMessageBody">
+						${message}
+					</div>
+				</div>
+			`
+			document.querySelector('#chatBody').scrollTop += 500;
+		}
+	})
 });
 
 function appendStringAsNodes(html) {
@@ -45,11 +69,17 @@ function appendStringAsNodes(html) {
     return frag;
 }
 
-function pingRespoder(){
-	let id = sessionStorage.getItem('activePingID');
-	let socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`);
-	socket.onmessage = function(event){}
+async function pingRespoder(){
+	let token = localStorage.getItem("healthTok");
+	let id = localStorage.getItem('activePingID');
+	let socket = await new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`);
+	socket.onopen = function(event){
+		console.log("Connected!! ", event);
+		socket.send(JSON.stringify({'status': 'accepted'}));
+	}
 }
+
+pingRespoder();
 
 
 function formatDate(dateTime){
