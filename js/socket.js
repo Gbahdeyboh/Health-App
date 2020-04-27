@@ -35,24 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		pingsBody.prepend(frag);
 	}
 
-
-	// Chat related functionalitied below
-	let chatReplyText = document.querySelector("#chatReplyText");
-	chatReplyText.addEventListener('keyup', (e) => {
-		let message = chatReplyText.value
-		if(e.keyCode === 13){
-			// sendMessage(message)
-			let chatBody = document.querySelector('#chatBody');
-			chatBody.innerHTML += `
-				<div class="sentMessage">
-					<div class="sentMessageBody">
-						${message}
-					</div>
-				</div>
-			`
-			document.querySelector('#chatBody').scrollTop += 500;
-		}
-	})
+	pingRespoder();
 });
 
 function appendStringAsNodes(html) {
@@ -69,17 +52,43 @@ function appendStringAsNodes(html) {
     return frag;
 }
 
-async function pingRespoder(){
+function pingRespoder(){
 	let token = localStorage.getItem("healthTok");
 	let id = localStorage.getItem('activePingID');
-	let socket = await new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`);
-	socket.onopen = function(event){
-		console.log("Connected!! ", event);
-		socket.send(JSON.stringify({'status': 'accepted'}));
-	}
+	console.log(id)
+	console.log(token)
+	// let socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`, [token]);
+	// socket.onopen = function(event){
+	// 	console.log("Connected!! ", event);
+	// 	socket.send(JSON.stringify({'status': 'accepted'}));
+	// }
+
+	socket = new WebSocket("wss://curefb.herokuapp.com/ws/chat/afkrefh6o3lk", ["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJiZmdpN3RmbjZ5b2IiLCJpYXQiOjE1ODc5MTA5NzAsImV4cCI6MTU4ODA4Mzc3MH0.bVR7FXxBb9ePjN8dYQyTwucMU5BMXeBXpwiJ-HL2RBY"]);
+	socket.onmessage = function(event) {
+	  console.log(`[message] Data received from server: ${event.data}`);
+	};
+
+	// Chat related functionalitied below
+	let chatReplyText = document.querySelector("#chatReplyText");
+	chatReplyText.addEventListener('keyup', (e) => {
+		let message = chatReplyText.value
+		if(e.keyCode === 13){
+			// sendMessage(message)
+			let chatBody = document.querySelector('#chatBody');
+			chatBody.innerHTML += `
+				<div class="sentMessage">
+					<div class="sentMessageBody">
+						${message}
+					</div>
+				</div>
+			`
+			socket.send(JSON.stringify({'message': message}));
+			document.querySelector('#chatBody').scrollTop += 500;
+		}
+	})
 }
 
-pingRespoder();
+// pingRespoder();
 
 
 function formatDate(dateTime){
