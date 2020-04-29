@@ -82,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
 						})
 					}
 				}
+				else{
+					localStorage.removeItem("healthTok");
+					window.href = "./login.html";
+				}
 			})
 			.catch(err => {
 				// console.log("The err is ", err);
