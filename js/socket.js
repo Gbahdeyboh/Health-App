@@ -50,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		pingPicker.forEach(pings => {
 			pings.addEventListener("click", () => {
 				// Pick the ping
-				socket.send(JSON.stringify({'status': 'accepted', 'id': id}))
-				console.log("Ping responded!!! ", event);
 				pingRespoder(id);
 			});
 		})
@@ -81,6 +79,8 @@ function pingRespoder(pingID){
 	let chatBody = document.querySelector('#chatBody');
 	socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${pingID}`, [`${token}`]);
 	socket.onopen = function(event){
+		socket.send(JSON.stringify({'status': 'accepted', 'id': pingID}))
+		console.log("Ping responded!!! ", event);
 		console.log("Connected!! ", event);
 	}
 	socket.onmessage = function(event) {
