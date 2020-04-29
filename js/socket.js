@@ -39,10 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		let latestPingerClinicNo = document.querySelector('#latestPingerClinicNo');
 		let latestPingerProfilePicture = document.querySelector('#latestPingImage');
 		let latestPingerTime = document.querySelector('#latestPingerTime');
+		let chatPingerName = document.querySelector("#chatUserName");
+		let chatPingerClinic = document.querySelector("#chatUserClinic");
+		let chatPingerImage = document.querySelector("#chatUserImage");
+		chatPingerName.textContent = `${data.text.student.last_name} ${data.text.student.first_name}`;
+		chatPingerClinic.textContent = data.text.student.clinic_number;
 		latestPingMessage.textContent = data.text.message;
 		latestPingerName.textContent = `${data.text.student.last_name} ${data.text.student.first_name}`;
-		// latestPingerClinicNo.textContent = 
+		latestPingerClinicNo.textContent = data.text.student.clinic_number;
 		latestPingerProfilePicture.src = data.text.student.image;
+		chatPingerImage.src = data.text.student.image;
 		latestPingerTime.textContent = formatDate(data.text.created_at).formattedTime;
 		// Enable ping responnding
 		let pingPicker = document.querySelectorAll(".pickPing");;
@@ -84,6 +90,7 @@ function pingRespoder(pingID){
 		console.log("Connected!! ", event);
 	}
 	socket.onmessage = function(event) {
+		console.log("received message is ", event.data);
 	  // console.log(`[message] Data received from server: ${event.data}`);
 	  chatBody.innertHTML += `
 		<div class="receivedMessage row">
