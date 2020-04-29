@@ -20,7 +20,6 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/fontawesome-all.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script type="text/javascript" src="js/socket.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
@@ -147,7 +146,7 @@
 									<!-- Ping Info's below -->
 									<div class="" id="pingInfoSection">
 										<div id="allPingDetails">
-											<div class="pingDetail">
+											<!-- <div class="pingDetail">
 												<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
 													<img src="./images/profile1.jpg" alt="Pingers Image here">
 													<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
@@ -161,12 +160,12 @@
 														Hello There, I'm currently at the school gate with my friend and ...
 													</div>
 												</div>
-											</div>
-											<div class="pingDetail">
+											</div> -->
+											<!-- <div class="pingDetail">
 												<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
-													<img src="./images/profile1.jpg" alt="Pingers Image here">
+													<img src="./images/profile1.jpg" alt="Pingers Image here"> -->
 													<!-- Has an active class when currently pinging and a passive one when not -->
-													<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
+											<!-- 		<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
 												</div>
 												<div class="col m9 l9 fullHeight">
 													<div class="" id="pingDetailTextBodyOne">
@@ -177,7 +176,7 @@
 														Hello There, I'm currently at the school gate with my friend and ...
 													</div>
 												</div>
-											</div>
+											</div> -->
 											<!-- More ping details are added here -->
 										</div>
 										<!-- Loader -->
@@ -215,11 +214,11 @@
 												<div class="latestPinger" id="latestPingerTime"><!-- 10:52AM --></div>
 											</div>
 											<div class="col m6 l6 fullHeight displayFlex" id="pingReplyButtons">
-												<div class="displayFlex startChat" id="startChatBtn">
+												<div class="displayFlex pickPing startChat" id="startChatBtn">
 													Chat
 													<img src="./css/icons/chat.svg" style="padding-left: 1em;">
 												</div>
-												<div class="displayFlex" id="videoCallBtn">
+												<div class="displayFlex pickPing" id="videoCallBtn">
 													Video Call
 													<img src="./css/icons/video_call.svg" style="padding-left: 1em;">
 												</div>

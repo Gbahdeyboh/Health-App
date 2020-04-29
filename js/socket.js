@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		let newPing = `
 			<div class="pingDetail" data-id="${data.text.id}">
 				<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
-					<img src="./images/profile1.jpg" alt="Pingers Image here">
+					<img src=${data.text.student.image} alt="Pingers Image here">
 					<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
 				</div>
 				<div class="col m9 l9 fullHeight">
 					<div class="pingDetailTextBodyOne">
-						<div class="fullHeight col m8 l8 pingDetailName">Wendy Flores</div>
+						<div class="fullHeight col m8 l8 pingDetailName">${data.text.student.last_name} ${data.text.student.first_name}</div>
 						<div class="fullHeight col m4 l4 pingDetailTime">${formatDate(data.text.created_at).formattedTime}</div>
 					</div>
 					<div class="pingDetailTextBodyTwo">
@@ -33,9 +33,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		`
 		let frag = appendStringAsNodes(newPing)
 		pingsBody.prepend(frag);
+		// update the active ping section
+		let latestPingMessage = document.querySelector('#latestPingMessage');
+		let latestPingerName = document.querySelector('#latestPingerName');
+		let latestPingerClinicNo = document.querySelector('#latestPingerClinicNo');
+		let latestPingerProfilePicture = document.querySelector('#latestPingImage');
+		let latestPingerTime = document.querySelector('#latestPingerTime');
+		latestPingMessage.textContent = data.text.message;
+		latestPingerName.textContent = `${data.text.student.last_name} ${data.text.student.first_name}`;
+		// latestPingerClinicNo.textContent = 
+		latestPingerProfilePicture.src = data.text.student.image;
+		latestPingerTime.textContent = formatDate(data.text.created_at).formattedTime;
+		// Enable ping responnding
+		let pingPicker = document.querySelectorAll(".pickPing");;
+		pingPicker = Array.from(pingPicker);
+		pingPicker.forEach(pings => {
+			pings.addEventListener("click", () => {
+				// Pick the ping
+				socket.send(JSON.stringify({'status': 'accepted', 'id': id}))
+				console.log("Ping responded!!! ", event);
+				pingRespoder(id);
+			});
+		})
 	}
-
-	pingRespoder();
 });
 
 function appendStringAsNodes(html) {
@@ -52,29 +72,39 @@ function appendStringAsNodes(html) {
     return frag;
 }
 
-function pingRespoder(){
+function pingRespoder(pingID){
 	let token = localStorage.getItem("healthTok");
 	let id = localStorage.getItem('activePingID');
 	console.log(id)
 	console.log(token)
-	// let socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${id}`, [token]);
-	// socket.onopen = function(event){
-	// 	console.log("Connected!! ", event);
-	// 	socket.send(JSON.stringify({'status': 'accepted'}));
-	// }
 
-	socket = new WebSocket("wss://curefb.herokuapp.com/ws/chat/afkrefh6o3lk", ["eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJiZmdpN3RmbjZ5b2IiLCJpYXQiOjE1ODc5MTA5NzAsImV4cCI6MTU4ODA4Mzc3MH0.bVR7FXxBb9ePjN8dYQyTwucMU5BMXeBXpwiJ-HL2RBY"]);
+	let chatBody = document.querySelector('#chatBody');
+	socket = new WebSocket(`wss://curefb.herokuapp.com/ws/chat/${pingID}`, [`${token}`]);
+	socket.onopen = function(event){
+		console.log("Connected!! ", event);
+	}
 	socket.onmessage = function(event) {
-	  console.log(`[message] Data received from server: ${event.data}`);
+	  // console.log(`[message] Data received from server: ${event.data}`);
+	  chatBody.innertHTML += `
+		<div class="receivedMessage row">
+			<div class="col m2 l2 displayFlex">
+				<img src="./images/profile4.jpeg" class="studentsSectionImages" alt="Chat user Image here">
+			</div>
+			<div class="col m10 l10"> 
+				<div class="chatMessageBody">
+					${event.data.message}
+				</div>
+			</div>
+		</div>
+	  `
 	};
 
-	// Chat related functionalitied below
+	// Reply a chat
 	let chatReplyText = document.querySelector("#chatReplyText");
 	chatReplyText.addEventListener('keyup', (e) => {
 		let message = chatReplyText.value
 		if(e.keyCode === 13){
 			// sendMessage(message)
-			let chatBody = document.querySelector('#chatBody');
 			chatBody.innerHTML += `
 				<div class="sentMessage">
 					<div class="sentMessageBody">
@@ -82,6 +112,7 @@ function pingRespoder(){
 					</div>
 				</div>
 			`
+			chatReplyText.value = "";
 			socket.send(JSON.stringify({'message': message}));
 			document.querySelector('#chatBody').scrollTop += 500;
 		}

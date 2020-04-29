@@ -872,7 +872,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #chatBodyContainer{
-	/*display: none;*/
+	display: none;
 	width: 500px;
 	height: 515px;
 	position: absolute;

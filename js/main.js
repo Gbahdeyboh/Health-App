@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						let dateTime = pingInfo.created_at;
 						let {formattedDate, formattedTime} = formatDate(dateTime);
 						pingInfoSection.innerHTML += `
-							<div class="pingDetail" data-is=${pingInfo.id}>
+							<div class="pingDetail" data-id=${pingInfo.student.id} data-time=${formattedTime}>
 								<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
 									<img src="${pingInfo.student.image}" alt="Pingers Image here">
 									<!-- Has an active class when currently pinging and a passive one when not -->
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							</div>
 						`
 					});
+					displayCurrentPing();
 					// Upload the first ping message as active
 					if(nextUrl === "https://curefb.herokuapp.com/api/v1/healthcentre/ping"){
 						let latestPingerName = document.querySelector("#latestPingerName");
@@ -400,6 +401,47 @@ document.addEventListener('DOMContentLoaded', () => {
     videoCallEndBtn.addEventListener('click', () => {
     	videoCallSection.style.display = "none";
     });
+
+
+    function displayCurrentPing(){
+	    // Display the current ping Info when clicked 
+	    let pingDetail= document.querySelectorAll('.pingDetail');
+	    pingDetail = Array.from(pingDetail);
+	    pingDetail.forEach(ping => {
+	    	ping.addEventListener("click", () => {
+	    		let id = ping.dataset.id;
+	    		let time = ping.dataset.time;
+	    		console.log("id is ", id);
+	    		// fetch the students data
+				fetch(`https://curefb.herokuapp.com/api/v1/healthcentre/student/${id}`, {
+					headers: {
+						'Authorization': `Bearer ${token}`
+					}
+				})
+				.then(res => res.json())
+				.then(data => {
+					if(data.success){
+						data = data.data;
+						console.log("The data is => ", data);
+						let latestPingerName = document.querySelector('#latestPingerName');
+						let latestPingerClinicNo = document.querySelector('#latestPingerClinicNo');
+						let latestPingerProfilePicture = document.querySelector('#latestPingImage');
+						let latestPingerMessage = document.querySelector('#latestPingMessage');
+						let latestPingerTime = document.querySelector('#latestPingerTime');
+						latestPingerName.textContent = `${data.last_name} ${data.first_name}`;
+						latestPingerClinicNo.textContent = data.clinic_number;
+						latestPingerProfilePicture.src = data.image;
+						latestPingerMessage.textContent = ping.querySelector('.pingDetailTextBodyTwo').textContent;
+						latestPingerTime.textContent = time;
+					}
+				})
+				.catch(err => {
+					console.log("Can't fethc student data => ", err);
+				});
+	    	})
+	    })
+    }
+
 });
 
 window.mobilecheck = function() {
