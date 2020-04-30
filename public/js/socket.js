@@ -96,11 +96,11 @@ function pingRespoder(pingID, studentImageUrl){
 		// console.log("The message is ", event.data.message);
 		let data = JSON.parse(event.data);
 		console.log("parsed data is => ", data);
-		console.log("Message after parse is ", data.data.message);
+		console.log("Message after parse is ", data.data.data);
 	   // console.log(`[message] Data received from server: ${event.data}`);
 	   let chatToAddchatBody = document.querySelector('#chatBody'); 
-	   let message = data.data.message;
-	   if(message !== "Status `accepted` is set successfully"){
+	   let message = data.data.data;
+	   if(data.data.message !== "Status `accepted` is set successfully"){
 		   chatToAddchatBody.innerHTML += `
 			<div class="receivedMessage row">
 				<div class="col m2 l2 displayFlex">
