@@ -8,25 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Display the active ping section.
 		let infoSectionLatestPingBody = document.querySelector('#infoSectionLatestPingBody');
 		let data = event.data;
-		data = JSON.parse(data);
-		let id = data.text.id;
+		console.log("Event is ", event);
+		data = JSON.parse(data).data;
+		console.log("data is ", data)
+		let id = data.id;
 		localStorage.setItem('activePingID', id);
 		console.log("The id is ", id);
 		console.log(data);
 		let pingsBody = document.querySelector("#allPingDetails");
 		let newPing = `
-			<div class="pingDetail" data-id="${data.text.id}">
+			<div class="pingDetail" data-id="${data.id}">
 				<div class="col m3 l3 fullHeight center" id="pingDetailImageBody">
-					<img src=${data.text.student.image} alt="Pingers Image here">
+					<img src=${data.student.image} alt="Pingers Image here">
 					<img src="./images/active.png" alt="Active Pings Indicator" class="activePingIndicator active">
 				</div>
 				<div class="col m9 l9 fullHeight">
 					<div class="pingDetailTextBodyOne">
-						<div class="fullHeight col m8 l8 pingDetailName">${data.text.student.last_name} ${data.text.student.first_name}</div>
-						<div class="fullHeight col m4 l4 pingDetailTime">${formatDate(data.text.created_at).formattedTime}</div>
+						<div class="fullHeight col m8 l8 pingDetailName">${data.student.last_name} ${data.student.first_name}</div>
+						<div class="fullHeight col m4 l4 pingDetailTime">${formatDate(data.created_at).formattedTime}</div>
 					</div>
 					<div class="pingDetailTextBodyTwo">
-						${data.text.message.substr(0, 50)}...
+						${data.message.substr(0, 50)}...
 					</div>
 				</div>
 			</div>
@@ -42,21 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		let chatPingerName = document.querySelector("#chatUserName");
 		let chatPingerClinic = document.querySelector("#chatUserClinic");
 		let chatPingerImage = document.querySelector("#chatUserImage");
-		chatPingerName.textContent = `${data.text.student.last_name} ${data.text.student.first_name}`;
-		chatPingerClinic.textContent = data.text.student.clinic_number;
-		latestPingMessage.textContent = data.text.message;
-		latestPingerName.textContent = `${data.text.student.last_name} ${data.text.student.first_name}`;
-		latestPingerClinicNo.textContent = data.text.student.clinic_number;
-		latestPingerProfilePicture.src = data.text.student.image;
-		chatPingerImage.src = data.text.student.image;
-		latestPingerTime.textContent = formatDate(data.text.created_at).formattedTime;
+		chatPingerName.textContent = `${data.student.last_name} ${data.student.first_name}`;
+		chatPingerClinic.textContent = data.student.clinic_number;
+		latestPingMessage.textContent = data.message;
+		latestPingerName.textContent = `${data.student.last_name} ${data.student.first_name}`;
+		latestPingerClinicNo.textContent = data.student.clinic_number;
+		latestPingerProfilePicture.src = data.student.image;
+		chatPingerImage.src = data.student.image;
+		latestPingerTime.textContent = formatDate(data.created_at).formattedTime;
 		// Enable ping responnding
 		let pingPicker = document.querySelectorAll(".pickPing");;
 		pingPicker = Array.from(pingPicker);
 		pingPicker.forEach(pings => {
 			pings.addEventListener("click", () => {
 				// Pick the ping
-				pingRespoder(id);
+				pingRespoder(id, data.student.image);
 			});
 		})
 	}
@@ -76,7 +78,7 @@ function appendStringAsNodes(html) {
     return frag;
 }
 
-function pingRespoder(pingID){
+function pingRespoder(pingID, studentImageUrl){
 	let token = localStorage.getItem("healthTok");
 	let id = localStorage.getItem('activePingID');
 	console.log(id)
@@ -91,19 +93,28 @@ function pingRespoder(pingID){
 	}
 	socket.onmessage = function(event) {
 		console.log("received message is ", event.data);
-	  // console.log(`[message] Data received from server: ${event.data}`);
-	  chatBody.innertHTML += `
-		<div class="receivedMessage row">
-			<div class="col m2 l2 displayFlex">
-				<img src="./images/profile4.jpeg" class="studentsSectionImages" alt="Chat user Image here">
-			</div>
-			<div class="col m10 l10"> 
-				<div class="chatMessageBody">
-					${event.data.message}
+		// console.log("The message is ", event.data.message);
+		let data = JSON.parse(event.data);
+		console.log("parsed data is => ", data);
+		console.log("Message after parse is ", data.data.message);
+	   // console.log(`[message] Data received from server: ${event.data}`);
+	   let chatToAddchatBody = document.querySelector('#chatBody'); 
+	   let message = data.data.message;
+	   if(message !== "Status `accepted` is set successfully"){
+		   chatToAddchatBody.innerHTML += `
+			<div class="receivedMessage row">
+				<div class="col m2 l2 displayFlex">
+					<img src="${studentImageUrl}" class="studentsSectionImages" alt="Chat user Image here">
+				</div>
+				<div class="col m10 l10"> 
+					<div class="chatMessageBody">
+						${message}
+					</div>
 				</div>
 			</div>
-		</div>
-	  `
+		   `
+	   }
+	   document.querySelector('#chatBody').scrollTop += 500;
 	};
 
 	// Reply a chat
