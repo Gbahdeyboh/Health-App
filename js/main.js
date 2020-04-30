@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 										<div class="fullHeight col m4 l4 pingDetailTime">${formattedDate}</div>
 									</div>
 									<div class="pingDetailTextBodyTwo">
-										${pingInfo.message}
+										${pingInfo.message.substr(0, 80)}...
 									</div>
 								</div>
 							</div>
