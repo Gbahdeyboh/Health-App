@@ -11,7 +11,7 @@ This repository holds the Front end code for the project that has three parts to
  3. Alarm (IoT) system for the health centre
  4. Server-side web application
  
- Submission should be graded based on the **master** branch. However, we are committed to improving the project beyond what we have at submission for the Solutions challenge. Hence, new code will be pushed to the **staging**.
+ Submission should be graded based on the **master** branch. However, we are committed to improving the project beyond what we have at submission for the Solutions challenge. Hence, new code will be pushed to this branch which is the **staging**.
  
  ## Setup
  This project currently uses firebase, ensure you have `firebase cli` installed.
