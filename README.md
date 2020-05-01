@@ -22,7 +22,7 @@ This project currently uses firebase, ensure you have `firebase cli` installed.
 Just so you understand why every decision on the front end was made, our designer put in a lot of tremendous effort into  drafting a well detailed design case study of the application which can be found [here](https://medium.com/@kazeem.oluwatosin/health-app-a-ux-case-study-baa0ef93c72b)
 
 ## Testing 
-The Web App has been hosted on firebase and can be accessed via the URL [https://curefb-web/web.app](https://curefb-web/web.app).
+The Web App has been hosted on firebase and can be accessed via the URL [https://curefb-web.web.app/](https://curefb-web.web.app/).
 
 Once the app is open, it is required that you login to the app before you're able to use it. We've Created a single account on the back end to be used to Login to the Account. The Account credentials are as follows.
 
