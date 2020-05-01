@@ -19,7 +19,9 @@ This project currently uses firebase, ensure you have `firebase cli` installed.
  - Navigate the the directory of this project on your terminal and run the command `firebase serve`
  
 ## Design
-Just so you understand why every decision on the front end was made, our designer put in a lot of tremendous effort into  drafting a well detailed design case study of the application which can be found [here](https://medium.com/@kazeem.oluwatosin/health-app-a-ux-case-study-baa0ef93c72b)
+Just so you understand why every decision on the front end was made, our designer put in a lot of tremendous effort into  drafting a well detailed design case study of the application. The design and case study are below/
+- [Design](https://www.figma.com/file/OwmgzH1B0SRBUacRnvXxwG/Solution-Challenge-2020?node-id=0%3A1)
+- [Design Case study](https://medium.com/@kazeem.oluwatosin/health-app-a-ux-case-study-baa0ef93c72b)
 
 ## Testing 
 The Web App has been hosted on firebase and can be accessed via the URL [https://curefb-web.web.app/](https://curefb-web.web.app/).
@@ -34,6 +36,6 @@ Password - Chukwuma
 ## Todos
 The app is not complete yet, there are features we left out or that don't quite work as expected, we're enthusiastic about it and want to keep building on our `staging branch`. We want to keep you up to date with our recent updates which is why we're adding a list of todos that we plan on implementing after submission (We submitted `master branch` and would be pushing updates to `staging branch`).
 
-1) Mantain the state of a chat
+1) Maintain the state of a chat
 2) Make chatting with multiple students have a different state and be seamless
 3) Add a Video calling feature(What we have on the app is just the Interface, it does not work)
