@@ -30,3 +30,10 @@ Once the app is open, it is required that you login to the app before you're abl
 Username - ciad4877
 Password - Chukwuma
 ```
+
+## Todos
+The app is not complete yet, there are features we left out or that don't quite work as expected, we're enthusiastic about it and want to keep building on our `staging branch`. We want to keep you up to date with our recent updates which is why we're adding a list of todos that we plan on implementing after submission (We submitted `master branch` and would be pushing updates to `staging branch`).
+
+1) Mantain the state of a chat
+2) Make chatting with multiple students have a different state and be seamless
+3) Add a Video calling feature(What we have on the app is just the Interface, it does not work)
