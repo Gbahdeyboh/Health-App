@@ -24,7 +24,7 @@ Just so you understand why every decision on the front end was made, our designe
 ## Testing 
 The Web App has been hosted on firebase and can be accessed via the URL [https://curefb-web/web.app](https://curefb-web/web.app).
 
-> Once the app is open, it is required that you login to the app before you're able to use it. We've Created a single account on the back end to be used to Login to the Account. The Account credentials are as follows.
+Once the app is open, it is required that you login to the app before you're able to use it. We've Created a single account on the back end to be used to Login to the Account. The Account credentials are as follows.
 ```
 Username - ciad4877
 Password - Chukwuma
