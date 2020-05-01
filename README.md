@@ -1,5 +1,7 @@
 ![HealthApp Image](https://res.cloudinary.com/gbahdeyboh/image/upload/v1588299034/healthAPP_vylst4.png)
-
+ ## NOTE
+ This isn't the submission branch, the branch submitted for the challenge is `master`. This branhc most likely has code that was written after submisssion. If you want to see how far we've progressed after submission, you're in the right place. Progress would be updated here regularly.
+ 
 # Health-App
 HealthApp is a system built to bridge the communication gap between the students and the health centre at the Federal University of Agriculture, Abeokuta. 
 
